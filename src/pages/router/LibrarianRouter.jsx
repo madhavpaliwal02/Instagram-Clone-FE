@@ -1,8 +1,10 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import LibrarianSidebar from '../../components/librarian/LibrarianSidebar'
-import LibrarianSignUp from '../../components/librarian/LibrarianSignUp'
+import BooksTotal from '../book/BooksTotal'
+import IssuedBookTotal from '../issuedBook/IssuedBookTotal'
 import LibrarianPersonalDetails from '../librarian/LibrarianPersonalDetails'
+import StudentTotal from '../student/StudentTotal'
 
 const LibrarianRouter = () => {
     return (
@@ -13,7 +15,9 @@ const LibrarianRouter = () => {
             <div className='w-full'>
                 <Routes>
                     <Route path='/personal-details' element={<LibrarianPersonalDetails />} />
-                    {/* <Route path='/librarian/signup' element={<LibrarianSignUp />} /> */}
+                    <Route path='/total-students' element={<StudentTotal />} />
+                    <Route path='/total-books' element={<BooksTotal />} />
+                    <Route path='/total-students-book-issued' element={<IssuedBookTotal />} />
                 </Routes>
             </div>
         </div>

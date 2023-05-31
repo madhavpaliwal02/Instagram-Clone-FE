@@ -14,14 +14,35 @@ const LibrarianSidebar = () => {
     const handleTabClick = (title) => {
         setActiveTab(title);
 
-        if (title === "Personal Details")
-            nav("/librarian/personal-details");
-        // else if (title === "Personal Det")
-        //     nav("");
+        switch (title) {
+            case "Personal Details":
+                nav("/librarian/personal-details");
+                break;
+
+            case "Total Students Available":
+                nav("/librarian/total-students");
+                break;
+
+            case "Total Students (Auth)":
+                nav("/librarian/total-students-auth");
+                break;
+
+            case "Total Books Available":
+                nav("/librarian/total-books");
+                break;
+
+            case "Total Books Issued":
+                nav("/librarian/total-books-issued");
+                break;
+
+            case "Total Students Issued Books":
+                nav("/librarian/total-students-book-issued");
+                break;
+        }
     }
 
     return (
-        <div className='sticky top-0 h-[100vh] border'>
+        <div className='sticky top-0 h-[100vh]'>
             < div className='mt-10 h-full flex justify-between px-10' >
                 <div>
                     {

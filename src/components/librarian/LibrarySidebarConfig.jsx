@@ -4,11 +4,11 @@ import { CgProfile } from 'react-icons/cg';
 
 export const menu = [
     { title: "Personal Details", icon: <AiOutlineHome className='text-2xl mr-5' />, activeIcon: <AiOutlineHome /> },
-    { title: "Total Books Available", icon: <AiOutlineSearch className='text-2xl mr-5' />, activeIcon: <AiOutlineSearch /> },
     { title: "Total Students Available", icon: <AiOutlineCompass className='text-2xl mr-5' />, activeIcon: <AiOutlineCompass /> },
     { title: "Total Students (Auth)", icon: <RiVideoLine className='text-2xl mr-5' />, activeIcon: <RiVideoFill /> },
-    { title: "Totol Books Issued", icon: <AiOutlineMessage className='text-2xl mr-5' />, activeIcon: <AiFillMessage /> },
-    { title: "Total Students Issued Books", icon: <AiOutlineHeart className='text-2xl mr-5' />, activeIcon: <AiFillHeart /> }
+    { title: "Total Books Available", icon: <AiOutlineSearch className='text-2xl mr-5' />, activeIcon: <AiOutlineSearch /> },
+    { title: "Total Books Issued", icon: <AiOutlineMessage className='text-2xl mr-5' />, activeIcon: <AiFillMessage /> },
+    { title: "Total Student Issued Books", icon: <AiOutlineHeart className='text-2xl mr-5' />, activeIcon: <AiFillHeart /> }
     // { title: "Revenue Generated", icon: <AiOutlinePlusCircle className='text-2xl mr-5' />, activeIcon: <AiOutlinePlusCircle /> }
 
 ]
