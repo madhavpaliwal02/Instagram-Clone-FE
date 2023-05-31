@@ -1,9 +1,8 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import LibrarianDashboard from '../../components/librarian/LibrarianDashboard'
-import LibrarianHome from '../../components/librarian/LibrarianHome'
 import Navbar from '../../components/navbar/Navbar'
 import HomePage from '../home/HomePage'
+import LibrarianHome from '../librarian/LibrarianHome'
 import LibrarianRouter from './LibrarianRouter'
 
 const Router = () => {
@@ -15,7 +14,8 @@ const Router = () => {
             <div className='text-center'>
                 <Routes>
                     <Route path='/' element={<HomePage />} />
-                    <Route path='/librarian' element={<LibrarianDashboard />} />
+                    <Route path='/librarian' element={<LibrarianHome />} />
+                    <Route path='/librarian/*' element={<LibrarianRouter />} />
                     {/* <Route path='' element={ } /> */}
                 </Routes>
             </div>

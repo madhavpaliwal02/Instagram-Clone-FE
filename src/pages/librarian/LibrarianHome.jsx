@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import LibrarianSignIn from './LibrarianSignIn';
-import LibrarianSignUp from './LibrarianSignUp';
+import LibrarianSignIn from '../../components/librarian/LibrarianSignIn';
+import LibrarianSignUp from '../../components/librarian/LibrarianSignUp';
 
 const LibrarianHome = () => {
 
