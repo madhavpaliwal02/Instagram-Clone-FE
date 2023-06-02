@@ -15,13 +15,15 @@ const LibrarianHome = () => {
     return (
         <div className='mt-10'>
             {/* Header */}
-            <div className='text-4xl font-bold text-indigo-600'>
-                {
-                    currPage ?
-                        <div>Librarian Sign-In</div>
-                        :
-                        <div>Librarian Sign-Up</div>
-                }
+            <div className='text-3xl italic font-bold text-indigo-600'>
+                <p className='w-[30%] m-auto shadow-md shadow-black-500/30 py-2'>
+                    {
+                        currPage ?
+                            "Librarian Sign-In"
+                            :
+                            "Librarian Sign-Up"
+                    }
+                </p>
             </div>
 
             {/* Login / Signup */}

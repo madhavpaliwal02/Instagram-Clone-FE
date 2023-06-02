@@ -20,31 +20,31 @@ const LibrarianSidebar = () => {
                 break;
 
             case "Total Students Available":
-                nav("/librarian/total-students");
+                nav("/librarian/total-students", { state: { title: 'all' } });
                 break;
 
             case "Total Students (Auth)":
-                nav("/librarian/total-students-auth");
+                nav("/librarian/total-students-auth", { state: { title: 'auth' } });
                 break;
 
             case "Total Books Available":
-                nav("/librarian/total-books");
+                nav("/librarian/total-books", { state: { title: 'all' } });
                 break;
 
             case "Total Books Issued":
-                nav("/librarian/total-books-issued");
+                nav("/librarian/total-books-issued", { state: { title: 'issued' } });
                 break;
 
-            case "Total Students Issued Books":
+            case "Total Student Issued Books":
                 nav("/librarian/total-students-book-issued");
                 break;
         }
     }
 
     return (
-        <div className='sticky top-0 h-[100vh]'>
-            < div className='mt-10 h-full flex justify-between px-10' >
-                <div>
+        <div className='fixed bottom-0 h-[78vh]'>
+            < div className='px-10' >
+                <div className='py-8'>
                     {
                         menu.map((item) =>
                             <div onClick={() => handleTabClick(item.title)} className='flex items-center mb-5 cursor-pointer text-lg'>
