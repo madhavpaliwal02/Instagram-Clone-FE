@@ -15,8 +15,8 @@ const Router = () => {
                 <Routes>
                     <Route path='/' element={<HomePage />} />
                     <Route path='/librarian' element={<LibrarianHome />} />
-                    {['/librarian/*', '/librarian/home'].map(path => <Route path={path} element={<LibrarianRouter />} />)}
-                    {/* <Route path='/librarian/*' element={<LibrarianRouter />} /> */}
+                    {/* {['/librarian/*', '/librarian/home'].map(path => <Route path={path} element={<LibrarianRouter />} />)} */}
+                    <Route path='/librarian/*' element={<LibrarianRouter />} />
                     {/* <Route path='' element={ } /> */}
                 </Routes>
             </div>
