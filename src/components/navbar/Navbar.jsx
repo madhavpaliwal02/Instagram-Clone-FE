@@ -11,7 +11,7 @@ const Navbar = () => {
         nav("/")
     }
     return (
-        <div>
+        <div className='shadow-lg shadow-black-100'>
             <div className='flex mt-2 text-center'>
                 {/* Logo */}
                 <div onClick={handleLogo} className='w-[20%] flex justify-center items-center cursor-pointer'>

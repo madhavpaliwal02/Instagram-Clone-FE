@@ -5,6 +5,7 @@ import BooksTotal from '../../components/book/BooksTotal'
 import IssuedBookTotal from '../../components/issuedBook/IssuedBookTotal'
 import LibrarianPersonalDetails from '../../components/librarian/LibrarianPersonalDetails'
 import StudentTotal from '../../components/student/StudentTotal'
+import LibrarianUpdate from '../../components/librarian/LibrarianUpdate'
 
 const LibrarianRouter = () => {
     return (
@@ -20,6 +21,7 @@ const LibrarianRouter = () => {
                     <Route path='/total-books' element={<BooksTotal />} />
                     <Route path='/total-books-issued' element={<BooksTotal />} />
                     <Route path='/total-students-book-issued' element={<IssuedBookTotal />} />
+                    <Route path='/update' element={<LibrarianUpdate />} />
                 </Routes>
             </div>
         </div>

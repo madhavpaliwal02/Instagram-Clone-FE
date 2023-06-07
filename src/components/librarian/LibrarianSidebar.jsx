@@ -10,6 +10,11 @@ const LibrarianSidebar = () => {
     // Navigation
     const nav = useNavigate();
 
+    // Handle Logout
+    const handleLogout = () => {
+        nav("/librarian")
+    }
+
     // Handle onclick tab
     const handleTabClick = (title) => {
         setActiveTab(title);
@@ -53,6 +58,10 @@ const LibrarianSidebar = () => {
                             </div>
                         )
                     }
+                </div>
+                {/* Logout */}
+                <div onClick={handleLogout} className=''>
+                    <button className='flex w-[70%] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Logout</button>
                 </div>
             </div >
         </div >

@@ -1,15 +1,19 @@
 import React from 'react'
+import { FaUserEdit } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'
 
 const LibrarianPersonalDetails = () => {
 
   // Use Navigate
-  const nav = useNavigate();
+  const nav = useNavigate();  
 
-  // Handle Logout
-  const handleLogout = () => {
-    nav("/librarian")
+  // Handle Update Librarian
+  const handleUpdateLibrarian = () => {
+    nav("/librarian/update")
   }
+
+
+
   return (
     <div>
       {/* Header */}
@@ -18,10 +22,20 @@ const LibrarianPersonalDetails = () => {
       </div>
 
       {/* Personal Details */}
-      <div className='flex flex-col w-[70%] mx-auto justify-center items-center mt-12 border py-4 bg-indigo-200 shadow-lg shadow-indigo-300/50 hover:shadow-indigo-300/40'>
+      <div className='flex flex-col w-[70%] mx-auto justify-center items-center mt-12 border py-4 bg-wheat-200 shadow-lg shadow-black-300/50 hover:shadow-black-300/40'>
 
-        {/* Personal Details : Header */}
-        <div className='flex justify-left items-left text-2xl text-left font-semibold'>About Me</div>
+        {/* Header + Update */}
+        <div className='w-full flex justify-between'>
+          {/* Personal Details : Header */}
+          <div className='w-[90%] flex justify-center'>
+            <div className='flex justify-left items-left text-2xl text-left font-semibold'>About Me</div>
+          </div>
+
+          {/* Update */}
+          <div onClick={handleUpdateLibrarian} className='w-[7%] flex items-center justify-center text-3xl cursor-pointer hover:text-2xl'>
+            <FaUserEdit className='hover:shadow-md' />
+          </div>
+        </div>
 
         {/* Personal Details : Body */}
         <div className='w-full flex justify-around items-center mt-4 font-mono text-lg'>
@@ -64,18 +78,6 @@ const LibrarianPersonalDetails = () => {
           </div>
         </div>
 
-      </div>
-
-      {/* Handle Update + logout */}
-      <div className='flex justify-center w-full mt-8 py-4'>
-        {/* Update */}
-        <div>
-          <button className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Update</button>
-        </div>
-        {/* Logout */}
-        <div className='ml-10'>
-          <button className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600' onClick={handleLogout}>Logout</button>
-        </div>
       </div>
 
     </div>
