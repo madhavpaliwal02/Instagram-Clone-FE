@@ -18,7 +18,7 @@ const HomePage = () => {
 
     return (
         <div className='bottom-0 mx-5'>
-            <div className='flex items-center justify-around h-screen pb-40'>
+            <div className='flex items-center justify-evenly h-screen'>
 
                 {/* Librarian  */}
                 <div onClick={handleLibrarian} className='border flex flex-col items-center rounded-tl-lg rounded-br-lg cursor-pointer bg-sky-300 px-3 py-2 shadow-lg shadow-black-600/50'>

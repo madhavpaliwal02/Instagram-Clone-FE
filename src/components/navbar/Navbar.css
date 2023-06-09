@@ -1,0 +1,14 @@
+@media only screen and (max-width: 767px) {
+
+    .mobile-img {
+        display: none;
+    }
+}
+
+.nav-style {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Additional styles for the navbar */
+    background-color: #ffffff;
+}
