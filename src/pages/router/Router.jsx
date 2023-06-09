@@ -5,10 +5,13 @@ import HomePage from '../home/HomePage'
 import LibrarianHome from '../librarian/LibrarianHome'
 import LibrarianRouter from '../librarian/LibrarianRouter'
 
+
+
 const Router = () => {
     return (
         <div>
-            <div className='top-0 sticky fixed'>
+            <div className='top-0 sticky fixed' style={{ position: 'sticky', top: '0', zIndex: '1000', backgroundColor: '#ffffff' }}>
+
                 <Navbar />
             </div>
             <div className='text-center'>
