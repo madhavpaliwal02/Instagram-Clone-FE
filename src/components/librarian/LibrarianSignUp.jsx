@@ -1,40 +1,99 @@
-import React from 'react'
-// import {Radio } from ''
+import axios from 'axios'
+import React, { useState } from 'react'
+import { base_url_librarian } from '../../api/BootAPI'
+import '../css/Login.css'
 
 const LibrarianSignUp = () => {
+
+  // use state
+  const [librarian, setlibrarian] = useState({
+
+  })
+
+  // Handle form
+  const handleLibrarianForm = (e) => {
+    postLibrarianDataToServer(librarian)
+    console.log(librarian)
+    e.preventDefault();
+  }
+
+  // Post data handler
+  const postLibrarianDataToServer = (data) => {
+    axios.post(`${base_url_librarian}`, data).then(
+      (response) => {
+        console.log("data: ", response.data)
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
+  }
+
+  // // use Effect
+  // useEffect(() => {
+
+  // })
+
+
   return (
     <div className='w-[40%] my-4'>
       {/* SignUp Form */}
       <div className='flex justify-center'>
-        <form className="space-y-5 mt-2 w-[60%]" action="#" method="POST">
+        <form onSubmit={handleLibrarianForm} className="space-y-5 mt-2 " action="#" method="POST">
 
-          {/* Top 4 credentials */}
-          <div className='justify-between items-center space-y-4'>
+          {/* Form Grids */}
+          <div className='flex flex-col justify-around items-center'>
+            {/* Left */}
+            <div className='flex'>
 
-            {/* Name */}
-            <div>
-              <input id="name" name="name" type="text" placeholder='Name' required className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              {/* Name */}
+              <div class="content-center">
+                <label for="name" class="form-label">
+                  Name
+                </label>
+                <input id='name' name="name" class="form-input" type="text" placeholder="Enter your name"
+                  onChange={(e) => {
+                    setlibrarian({ ...librarian, name: e.target.value });
+                  }} />
+              </div>
+
+              {/* Contact */}
+              <div class="ml-8 content-center">
+                <label for="contact" class="form-label">
+                  Contact
+                </label>
+                <input id='contact' name='contact' class="form-input" type="text" placeholder="Enter your contact" onChange={(e) => {
+                  setlibrarian({ ...librarian, contact: e.target.value });
+                }} />
+              </div>
+
             </div>
 
-            {/* Email */}
-            <div>
-              <input id="email" name="email" type="email" placeholder='E-mail' autocomplete="email" required className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-            </div>
+            {/* Right */}
+            <div className='flex mt-8'>
+              {/* Email */}
+              <div class="relative">
+                <label for='email' class="form-label">Email</label>
+                <input id='email' name='email' class="form-input" type="email" placeholder="Type your mail id" onChange={(e) => {
+                  setlibrarian({ ...librarian, email: e.target.value });
+                }} />
+              </div>
 
-            {/* Password */}
-            <div>
-              <input id="password" name="password" type="password" placeholder='Password' autocomplete="current-password" required className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-            </div>
-
-            {/* Contact */}
-            <div>
-              <input id="contact" name="contact" type="text" placeholder='Contact' required className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              {/* Password */}
+              <div class="ml-8 content-center">
+                <label for='password' class="form-label">
+                  Password
+                </label>
+                <input id='password' name='password' class="form-input" type="password" placeholder="Enter your password" onChange={(e) => {
+                  setlibrarian({ ...librarian, password: e.target.value });
+                }} />
+              </div>
             </div>
 
             {/* Gender */}
-            <div className='flex justify-left space-x-5'>
+            <div className='flex justify-left mt-4 space-x-5'>
               {/* <span>Gender </span> */}
-              <div className='flex items-center'>
+              <div className='flex' >
                 <input type="radio" name="gender" id="male" value="Male" />
                 <label className='px-2' for="male">Male</label>
               </div>
@@ -43,15 +102,16 @@ const LibrarianSignUp = () => {
                 <label className='px-2' for="female">Female</label>
               </div>
             </div>
-          </div>
 
+          </div>
           {/* Submit Button */}
-          <div>
-            <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign Up</button>
+          <div className='flex items-center justify-center space-x-8 mt-5'>
+            <button type="reset" className="form-button">Reset</button>
+            <button type="submit" className="form-button">Sign Up</button>
           </div>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
 

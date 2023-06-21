@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../components/tableCss/Table.css'
+import '../../components/css/Table.css'
 
 const IssuedBookTotal = () => {
   return (

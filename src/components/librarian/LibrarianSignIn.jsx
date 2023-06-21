@@ -1,53 +1,103 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { base_url_librarian } from '../../api/BootAPI'
+import '../css/Login.css'
 
 const LibrarianSignIn = () => {
+
+    // use state
+    const [user, setUser] = useState({
+
+    })
+
     // Use Navigation
     const nav = useNavigate();
 
-    const handleLogin = () => {
-        nav("/librarian/personal-details")
+
+    const handleLogin = (e) => {
+        checkLogin(user)
+        e.preventDefault();
+        // nav("/librarian/personal-details")
     }
+
+    // validate user
+    const checkLogin = (data) => {
+        // axios.post(`${base_url_librarian}/login`, data).then(
+        //     (response) => {
+        //         // console.log(response.data)
+        //         localStorage.setItem("libId", response.data)
+                nav("/librarian/personal-details")
+        //     },
+        //     (error) => {
+        //         console.log(error)
+        //         nav("/librarian")
+        //     }
+        // )
+    }
+
+
     return (
         <div className='w-[30%]'>
             <div className="flex min-h-full flex-col justify-center px-6 py-8 lg:px-8">
 
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
 
-                    {/* Login Form */}
-                    <form className="space-y-6" action="#" method="POST">
+                    <form class="space-y-6" action="" method="POST">
+                        {/* <input type="hidden" name="remember" value="true" /> */}
 
                         {/* Email */}
-                        <div>
-                            {/* <label for="email" className="text-left block text-sm font-medium leading-6 text-gray-900">Email address</label> */}
-                            <div className="mt-2">
-                                <input id="email" name="email" type="email" placeholder='E-mails' autocomplete="email" required className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <div class="relative">
+                            <div class="absolute right-0 mt-4"><svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                             </div>
+                            <label for='email' class="form-label">Email</label>
+                            <input id='email' name='email' class="form-input" type="email" required placeholder="Type your mail id"
+                                onChange={(e) => {
+                                    setUser({ ...user, email: e.target.value });
+                                }} />
                         </div>
 
                         {/* Password */}
-                        <div>
-                            <div className="flex items-center justify-between">
-                                {/* <label for="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label> */}
-                            </div>
-                            <div className="mt-2">
-                                <input id="password" name="password" type="password" placeholder='Password' autocomplete="current-password" required className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                                <a className="font-semibold opacity-70 text-indigo-600 hover:text-indigo-500 inactive text-sm">Forgot password?</a>
-                            </div>
+                        <div class="mt-8 content-center">
+                            <label for='password' class="form-label">
+                                Password
+                            </label>
+                            <input id='password' name='password' class="form-input" type="password" required placeholder="Enter your password"
+                                onChange={(e) => {
+                                    setUser({ ...user, password: e.target.value });
+                                }} />
                         </div>
 
-                        {/* Submit Button */}
-                        {/* <div>
-                            <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-                        </div> */}
+                        {/* Remember */}
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 bg-indigo-500 focus:ring-indigo-400 border-gray-300 rounded" />
+                                <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+                                    Remember me
+                                </label>
+                            </div>
+                            {/* <div class="text-sm">
+                                <a href="#" class="font-medium text-indigo-500 hover:text-indigo-500">
+                                    {currPage ? ' Forgot your password?' : ''}
+                                </a>
+                            </div> */}
+                        </div>
+
+                        <div className='mt-5'>
+                            <button onClick={handleLogin} type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+                        </div>
                     </form>
-                    <div className='mt-5'>
-                        <button onClick={handleLogin} type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-                    </div>
+
                 </div>
             </div>
         </div>
     )
 }
+
+
 
 export default LibrarianSignIn

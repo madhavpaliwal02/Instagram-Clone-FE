@@ -16,11 +16,14 @@ const Router = () => {
             </div>
             <div className='text-center'>
                 <Routes>
+                    {/* Home page */}
                     <Route path='/' element={<HomePage />} />
+
+                    {/* Librarian */}
                     <Route path='/librarian' element={<LibrarianHome />} />
-                    {/* {['/librarian/*', '/librarian/home'].map(path => <Route path={path} element={<LibrarianRouter />} />)} */}
                     <Route path='/librarian/*' element={<LibrarianRouter />} />
-                    {/* <Route path='' element={ } /> */}
+
+                    {/* Student */}
                 </Routes>
             </div>
         </div>

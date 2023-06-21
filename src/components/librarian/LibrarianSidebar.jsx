@@ -12,6 +12,7 @@ const LibrarianSidebar = () => {
 
     // Handle Logout
     const handleLogout = () => {
+        localStorage.removeItem("libId")
         nav("/librarian")
     }
 
@@ -30,6 +31,10 @@ const LibrarianSidebar = () => {
 
             case "Total Students (Auth)":
                 nav("/librarian/total-students-auth", { state: { title: 'auth' } });
+                break;
+
+            case "Add a Book":
+                nav("/librarian/add-book");
                 break;
 
             case "Total Books Available":

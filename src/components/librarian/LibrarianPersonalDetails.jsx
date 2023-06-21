@@ -1,15 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaUserEdit } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import { base_url_librarian } from '../../api/BootAPI';
 
 const LibrarianPersonalDetails = () => {
 
   // Use Navigate
-  const nav = useNavigate();  
+  const nav = useNavigate();
+
+  // Use state
+  const [librarian, setLibrarian] = useState({
+
+  })
+
+  // Getting the libId
+  const libId = localStorage.getItem("libId")
+  // console.log("LibId: ", libId)
 
   // Handle Update Librarian
   const handleUpdateLibrarian = () => {
     nav("/librarian/update")
+  }
+
+  useEffect(() => {
+    getLibrarian();
+  }, [])
+
+  const getLibrarian = () => {
+    axios.get(`${base_url_librarian}/${libId}`).then(
+      (response) => {
+        // console.log(response.data)
+        setLibrarian(response.data)
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 
 
@@ -22,7 +49,7 @@ const LibrarianPersonalDetails = () => {
       </div>
 
       {/* Personal Details */}
-      <div className='flex flex-col w-[70%] mx-auto justify-center items-center mt-12 border py-4 bg-wheat-200 shadow-lg shadow-black-300/50 hover:shadow-black-300/40'>
+      <div className='flex flex-col w-[95%] mx-auto justify-center items-center mt-12 border py-4 bg-wheat-200 shadow-lg shadow-black-300/50 hover:shadow-black-300/40'>
 
         {/* Header + Update */}
         <div className='w-full flex justify-between'>
@@ -44,17 +71,17 @@ const LibrarianPersonalDetails = () => {
             {/* Id */}
             <div className='flex'>
               <p className='font-semibold'>Id : </p>
-              <p className='ml-2 opacity-80'>123456</p>
+              <p className='ml-2 opacity-80'>{librarian.libId}</p>
             </div>
             {/* Name */}
             <div className='flex'>
               <p className='font-semibold' >Name: </p>
-              <p className='ml-2 opacity-80'>Palak Porwal</p>
+              <p className='ml-2 opacity-80'>{librarian.name}</p>
             </div>
             {/* Email */}
             <div className='flex'>
               <p className='font-semibold' >Email:</p>
-              <p className='ml-2 opacity-80'>palakporwal2504@gmail.com</p>
+              <p className='ml-2 opacity-80'>{librarian.email}</p>
             </div>
           </div>
 
@@ -62,18 +89,18 @@ const LibrarianPersonalDetails = () => {
           <div className='space-y-10'>
             {/* Gender */}
             <div className='flex'>
-              <p className='font-semibold' >Gender:</p>
-              <p className='ml-2 opacity-80'>Female</p>
+              <p className='font-semibold' >Gender: </p>
+              <p className='ml-2 opacity-80'>{librarian.gender}</p>
             </div>
             {/* Mobile No. */}
             <div className='flex'>
               <p className='font-semibold' >Mob No: </p>
-              <p className='ml-2 opacity-80'>+91 81093 80731</p>
+              <p className='ml-2 opacity-80'>{librarian.contact}</p>
             </div>
             {/* Date */}
             <div className='flex'>
               <p className='font-semibold' >Date:</p>
-              <p className='ml-2 opacity-80'>25-04-2002</p>
+              <p className='ml-2 opacity-80'>{librarian.date}</p>
             </div>
           </div>
         </div>

@@ -1,11 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import axios from 'axios';
+import { base_url_student } from '../../api/BootAPI';
 
 const StudentTotal = () => {
+
+    // Use state
+    const [students, setStudents] = useState([
+
+    ])
+
+    const getStudentAPI = () => {
+        axios.get(`${base_url_student}`).then(
+            (response) => {
+                setStudents(response.data)
+            },
+            (error) => {
+                console.log(error)
+            }
+        )
+    }
+
+    useEffect(() => {
+        getStudentAPI()
+    }, [])
 
     // Use Location
     const { state } = useLocation();
     const { title } = state;
+
     return (
         <div>
             {/* Header */}
@@ -32,17 +55,17 @@ const StudentTotal = () => {
                     </thead>
                     <tbody>
                         {
-                            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((item) =>
+                            students.map((s) =>
                                 <tr>
-                                    <td className='tBody'>Id</td>
-                                    <td className='tBody'>Name</td>
-                                    <td className='tBody'>Email</td>
-                                    <td className='tBody'>Roll No</td>
-                                    <td className='tBody'>Enrollment</td>
-                                    <td className='tBody'>Course</td>
-                                    <td className='tBody'>Semester</td>
-                                    <td className='tBody'>Gender</td>
-                                    <td className='tBody'>Date</td>
+                                    <td className='tBody'>{s.stuId}</td>
+                                    <td className='tBody'>{s.name}</td>
+                                    <td className='tBody'>{s.email}</td>
+                                    <td className='tBody'>{s.rollNo}</td>
+                                    <td className='tBody'>{s.enrollment}</td>
+                                    <td className='tBody'>{s.course}</td>
+                                    <td className='tBody'>{s.semester}</td>
+                                    <td className='tBody'>{s.gender}</td>
+                                    <td className='tBody'>{s.date}</td>
                                 </tr>
                             )
                         }
