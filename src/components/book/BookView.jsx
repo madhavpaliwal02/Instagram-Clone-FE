@@ -7,28 +7,28 @@ import { IoCloseSharp } from 'react-icons/io5'
 const ViewBook = ({ onClose, isOpen }) => {
 
     // Use state
-    const [book, setBook] = useState()
+    // const [book, setBook] = useState()
 
     // Getting id from local storage
-    const id = localStorage.getItem('bookId')
+    const book = localStorage.getItem('book')
 
     // Use effect
     useEffect(() => {
-        fetchBookFromServer()
+        // fetchBookFromServer()
     }, [])
 
     // Fetch book from id
-    const fetchBookFromServer = () => {
-        axios.get(`${base_url_book}/${id}`).then(
-            (response) => {
-                console.log(response.data)
-                setBook(response.data)
-            },
-            (error) => {
-                console.log(error)
-            }
-        )
-    }
+    // const fetchBookFromServer = () => {
+    //     axios.get(`${base_url_book}/${id}`).then(
+    //         (response) => {
+    //             console.log(response.data)
+    //             setBook(response.data)
+    //         },
+    //         (error) => {
+    //             console.log(error)
+    //         }
+    //     )
+    // }
 
     return (
         <div className='w-full'>

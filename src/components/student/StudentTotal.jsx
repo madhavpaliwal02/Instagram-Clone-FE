@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios';
 import { base_url_student } from '../../api/BootAPI';
+import '../css/Table.css'
+import { FaUserGraduate } from 'react-icons/fa'
+import { MdDeleteSweep } from 'react-icons/md'
+import { useDisclosure } from '@chakra-ui/react';
+import StudentView from './StudentView';
 
 const StudentTotal = () => {
 
@@ -10,7 +15,34 @@ const StudentTotal = () => {
 
     ])
 
-    const getStudentAPI = () => {
+    // Use disclosure
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    // Use Effect
+    useEffect(() => {
+        getDataFromServer()
+    }, [])
+
+    // Handle Student Modal
+    const handleView = (student) => {
+        // localStorage.setItem("student", student)
+        onOpen()
+    }
+
+    // Handle delete Student
+    const deleteStudent = (id) => {
+        axios.delete(`${base_url_student}/` + id).then(
+            (response) => {
+                console.log(response.data)
+            },
+            (error) => {
+                console.log(error)
+            }
+        )
+    }
+
+    // Get Data from Server
+    const getDataFromServer = () => {
         axios.get(`${base_url_student}`).then(
             (response) => {
                 setStudents(response.data)
@@ -20,10 +52,6 @@ const StudentTotal = () => {
             }
         )
     }
-
-    useEffect(() => {
-        getStudentAPI()
-    }, [])
 
     // Use Location
     const { state } = useLocation();
@@ -42,30 +70,36 @@ const StudentTotal = () => {
                 <table class="min-w-full leading-normal">
                     <thead>
                         <tr className=''>
-                            <th className='tHead tracking-wider'>Id</th>
                             <th className='tHead tracking-wider'>Name</th>
-                            <th className='tHead tracking-wider'>Email</th>
                             <th className='tHead tracking-wider'>Roll No</th>
-                            <th className='tHead tracking-wider'>Enrollment</th>
                             <th className='tHead tracking-wider'>Course</th>
                             <th className='tHead tracking-wider'>Semester</th>
                             <th className='tHead tracking-wider'>Gender</th>
-                            <th className='tHead tracking-wider'>Date</th>
+                            <th className='tHead tracking-wider'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            students.map((s) =>
+                            [1, 1, 1, 1, 1].map((s) =>
                                 <tr>
-                                    <td className='tBody'>{s.stuId}</td>
                                     <td className='tBody'>{s.name}</td>
-                                    <td className='tBody'>{s.email}</td>
                                     <td className='tBody'>{s.rollNo}</td>
-                                    <td className='tBody'>{s.enrollment}</td>
                                     <td className='tBody'>{s.course}</td>
                                     <td className='tBody'>{s.semester}</td>
                                     <td className='tBody'>{s.gender}</td>
-                                    <td className='tBody'>{s.date}</td>
+                                    <td className='tBody'>
+                                        <div className='flex justify-center items-center space-x-4'>
+                                            {/* View Student Modal */}
+                                            <div className='text-2xl cursor-pointer'>
+                                                <FaUserGraduate onClick={() => handleView(s)} />
+                                                <StudentView isOpen={isOpen} onClose={onClose} />
+                                            </div>
+                                            {/* Delete Student */}
+                                            <div className='text-2xl cursor-pointer'>
+                                                <MdDeleteSweep className='text-2xl' onClick={() => deleteStudent(s.stuId)} />
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             )
                         }

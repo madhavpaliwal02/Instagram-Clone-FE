@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { base_url_book } from '../../api/BootAPI';
 import { RiBook2Fill } from 'react-icons/ri'
 import { MdDeleteSweep } from 'react-icons/md'
-import ViewBook from './ViewBook';
+import BookView from './BookView';
 import { useDisclosure } from '@chakra-ui/react';
 import '../css/Table.css'
 
@@ -91,7 +91,7 @@ const BooksTotal = () => {
                                             {/* View Book Modal */}
                                             <div className='text-2xl cursor-pointer'>
                                                 <RiBook2Fill onClick={handleView} />
-                                                <ViewBook isOpen={isOpen} onClose={onClose} />
+                                                <BookView isOpen={isOpen} onClose={onClose} />
                                             </div>
                                             {/* Delete Book */}
                                             <div className='text-2xl cursor-pointer'>
