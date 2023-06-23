@@ -19,17 +19,17 @@ const StudentView = ({ isOpen, onClose }) => {
     }, [])
 
     // Fetch book from id
-    // const fetchStudentFromServer = () => {
-    //     axios.get(`${base_url_student}/${id}`).then(
-    //         (response) => {
-    //             console.log(response.data)
-    //             setStudent(response.data)
-    //         },
-    //         (error) => {
-    //             console.log(error)
-    //         }
-    //     )
-    // }
+    const fetchStudentFromServer = () => {
+        // axios.get(`${base_url_student}/${id}`).then(
+        //     (response) => {
+        //         console.log(response.data)
+        //         setStudent(response.data)
+        //     },
+        //     (error) => {
+        //         console.log(error)
+        //     }
+        // )
+    }
 
     return (
         <div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { ToastContainer, toast } from "react-toastify";
 import Navbar from '../../components/navbar/Navbar'
 import HomePage from '../home/HomePage'
 import LibrarianHome from '../librarian/LibrarianHome'
@@ -15,6 +16,7 @@ const Router = () => {
                 <Navbar />
             </div>
             <div className='text-center'>
+                <ToastContainer />
                 <Routes>
                     {/* Home page */}
                     <Route path='/' element={<HomePage />} />

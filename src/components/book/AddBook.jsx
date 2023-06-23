@@ -126,11 +126,11 @@ const AddBook = () => {
 
                             {/* Button */}
                             <div className='flex w-full justify-around'>
-                                <div>
-                                    <button type="reset" className="w-[130%] rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Reset</button>
+                                <div className='w-[25%]'>
+                                    <button type="reset" className=" form-button">Reset</button>
                                 </div>
-                                <div>
-                                    <button type="submit" className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add</button>
+                                <div className='w-[25%]'>
+                                    <button type="submit" className="form-button">Add</button>
                                 </div>
                             </div>
 

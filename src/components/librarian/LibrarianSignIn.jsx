@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { base_url_librarian } from '../../api/BootAPI'
 import '../css/Login.css'
+import { toast } from 'react-toastify'
 
 const LibrarianSignIn = () => {
 
@@ -27,7 +28,8 @@ const LibrarianSignIn = () => {
         //     (response) => {
         //         // console.log(response.data)
         //         localStorage.setItem("libId", response.data)
-                nav("/librarian/personal-details")
+        nav("/librarian/personal-details")
+        toast.success("Successfully login to the Dashboard", { position: "top-right" })
         //     },
         //     (error) => {
         //         console.log(error)

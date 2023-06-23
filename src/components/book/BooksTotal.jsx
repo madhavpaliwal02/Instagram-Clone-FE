@@ -23,17 +23,6 @@ const BooksTotal = () => {
         fetchBooksFromServer()
     }, [])
 
-    // handle View
-    const handleView = () => {
-        onOpen()
-        // localStorage.setItem("bookId", id)
-    }
-
-    // handle delete
-    const deleteBook = () => {
-
-    }
-
     // Fetch data from server
     const fetchBooksFromServer = () => {
         axios.get(`${base_url_book}`).then(
@@ -46,11 +35,28 @@ const BooksTotal = () => {
         )
     }
 
+    // handle View
+    const handleView = (book) => {
+        // localStorage.setItem("book", book)
+        onOpen()
+    }
+
+    // handle delete
+    const deleteBook = (id) => {
+        axios.delete(`${base_url_book}/` + id).then(
+            (response) => {
+                console.log(response.data)
+            },
+            (error) => {
+                console.log(error)
+            }
+        )
+    }
+
 
     // Use Location
     const { state } = useLocation();
     const { title } = state;
-
 
 
     return (
@@ -90,12 +96,12 @@ const BooksTotal = () => {
                                         <div className='flex justify-center items-center space-x-4'>
                                             {/* View Book Modal */}
                                             <div className='text-2xl cursor-pointer'>
-                                                <RiBook2Fill onClick={handleView} />
+                                                <RiBook2Fill onClick={() => handleView(book)} />
                                                 <BookView isOpen={isOpen} onClose={onClose} />
                                             </div>
                                             {/* Delete Book */}
                                             <div className='text-2xl cursor-pointer'>
-                                                <MdDeleteSweep className='text-2xl' onClick={deleteBook} />
+                                                <MdDeleteSweep className='text-2xl' onClick={() => deleteBook(book.bookId)} />
                                             </div>
                                         </div>
                                     </td>

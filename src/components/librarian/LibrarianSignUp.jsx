@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 import { base_url_librarian } from '../../api/BootAPI'
 import '../css/Login.css'
 
@@ -22,6 +23,7 @@ const LibrarianSignUp = () => {
     axios.post(`${base_url_librarian}`, data).then(
       (response) => {
         console.log("data: ", response.data)
+        toast.success("Librarian Added Successfully", { position: "top-right" })
       },
       (error) => {
         console.log(error)

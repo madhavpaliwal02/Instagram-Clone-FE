@@ -20,7 +20,7 @@ const LibrarianPersonalDetails = () => {
 
   // Handle Update Librarian
   const handleUpdateLibrarian = () => {
-    nav("/librarian/update")
+    nav("/librarian/update", { state: { libObj: librarian } })
   }
 
   useEffect(() => {

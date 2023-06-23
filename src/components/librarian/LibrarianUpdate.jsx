@@ -1,13 +1,47 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { base_url_librarian } from '../../api/BootAPI'
+import '../css/Update.css'
 
 const LibrarianUpdate = () => {
+
+    // use state
+    const [librarian, setLibrarian] = useState([
+
+    ])
+
+    // Use Location
+    const { state } = useLocation();
+    const { libObj } = state;
+
 
     // Use navigate
     const nav = useNavigate()
 
+    // Handle back button
     const handleBack = () => {
         nav("/librarian/personal-details")
+    }
+
+    // Handle Update Form
+    const handleUpdateForm = (e) => {
+        updateLibrarianData(librarian, librarian.libId)
+        e.preventDefault()
+    }
+
+    // Update the data on the server
+    const updateLibrarianData = (data, id) => {
+        axios.put(`${base_url_librarian}/${id}`, data).then(
+            (response) => {
+                toast.success("Librarian Updated Succesfully", { position: "top-right" })
+                nav("/librarian/personal-details")
+            },
+            (error) => {
+                toast.error("Something went wrong, try again later", { position: "top-right" })
+            }
+        )
     }
 
     return (
@@ -22,29 +56,41 @@ const LibrarianUpdate = () => {
 
                     {/* Login Form */}
                     <div className=' flex justify-center'>
-                        <form className="space-y-6 mt-8 w-[30%]" action="#" method="PUT">
+                        <form className="space-y-6 mt-8 w-[30%]" action={handleUpdateForm} method="PUT">
 
                             {/* Top 4 credentials */}
                             <div className='justify-between items-center space-y-6'>
 
                                 {/* Name */}
                                 <div>
-                                    <input id="name" name="name" type="text" placeholder='Name' required className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                    <input value={libObj.name} name="name" type="text" placeholder='Name' required className="form-input"
+                                        onChange={(e) => {
+                                            setLibrarian({ ...librarian, name: e.target.default })
+                                        }} />
                                 </div>
 
                                 {/* Email */}
                                 <div>
-                                    <input id="email" name="email" type="email" placeholder='E-mail' autocomplete="email" required className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                    <input value={libObj.email} name="email" type="email" placeholder='E-mail' autocomplete="email" required className="form-input"
+                                        onChange={(e) => {
+                                            setLibrarian({ ...librarian, email: e.target.default })
+                                        }} />
                                 </div>
 
                                 {/* Password */}
                                 <div>
-                                    <input id="password" name="password" type="password" placeholder='Password' autocomplete="current-password" required className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                    <input value={libObj.password} name="password" type="password" placeholder='Password' autocomplete="current-password" required className="form-input"
+                                        onChange={(e) => {
+                                            setLibrarian({ ...librarian, password: e.target.default })
+                                        }} />
                                 </div>
 
                                 {/* Contact */}
                                 <div>
-                                    <input id="contact" name="contact" type="text" placeholder='Contact' required className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                    <input value={libObj.contact} name="contact" type="text" placeholder='Contact' required className="form-input"
+                                        onChange={(e) => {
+                                            setLibrarian({ ...librarian, contact: e.target.default })
+                                        }} />
                                 </div>
 
                                 {/* Gender */}
@@ -63,11 +109,11 @@ const LibrarianUpdate = () => {
 
                             {/* Submit Button */}
                             <div className='flex w-full justify-around'>
-                                <div>
-                                    <button onClick={handleBack} type="submit" className="w-[130%] rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</button>
+                                <div className='w-[25%]'>
+                                    <button onClick={handleBack} type="submit" className="form-button">Back</button>
                                 </div>
-                                <div>
-                                    <button type="submit" className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-lg shadow-indigo-600/50 hover:shadow-indigo-600/40 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
+                                <div className='w-[25%]'>
+                                    <button type="submit" className="form-button">Update</button>
                                 </div>
                             </div>
                         </form>
