@@ -1,34 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Modal, ModalOverlay, ModalContent, ModalBody, ModalHeader } from "@chakra-ui/react"
-import axios from 'axios'
-import { base_url_book } from '../../api/BootAPI'
 import { IoCloseSharp } from 'react-icons/io5'
 
-const ViewBook = ({ onClose, isOpen }) => {
-
-    // Use state
-    // const [book, setBook] = useState()
-
-    // Getting id from local storage
-    const book = localStorage.getItem('book')
-
-    // Use effect
-    useEffect(() => {
-        // fetchBookFromServer()
-    }, [])
-
-    // Fetch book from id
-    // const fetchBookFromServer = () => {
-    //     axios.get(`${base_url_book}/${id}`).then(
-    //         (response) => {
-    //             console.log(response.data)
-    //             setBook(response.data)
-    //         },
-    //         (error) => {
-    //             console.log(error)
-    //         }
-    //     )
-    // }
+const ViewBook = ({ isOpen, onClose, book }) => {
 
     return (
         <div className='w-full'>
@@ -40,7 +14,7 @@ const ViewBook = ({ onClose, isOpen }) => {
                         <div className='w-full flex justify-between'>
                             {/* Book Title */}
                             <div className='w-[95%] flex justify-center'>
-                                <div className='flex justify-left items-left text-2xl text-left font-semibold'>Book Title</div>
+                                <div className='flex justify-left items-left text-2xl text-left font-semibold'>{book.title}</div>
                             </div>
 
                             {/* Close Modal */}
@@ -55,12 +29,13 @@ const ViewBook = ({ onClose, isOpen }) => {
                             {/* Id */}
                             <div className='flex font-semibold opacity-80 justify-end'>
                                 <p className='font-semibold'>Id : </p>
-                                <p className='ml-2 opacity-80'></p>
+                                <p className='ml-2 opacity-80'>{book.bookId}</p>
                             </div>
 
                             {/* Description */}
                             <div className='flex justify-center items-center'>
-                                Description :  afknaegjdfkjfkagkljFKAFLKJDKFAKLDFJLKDFKDNVKDFLKNADKLFJKLDJFKLDJFKSJFGKaglkgangn
+                                <p className='font-semibold'>Description :  </p>
+                                <p className='ml-2 opacity-80'>{book.description}</p>
                             </div>
 
                             {/* Basic details */}
@@ -70,17 +45,17 @@ const ViewBook = ({ onClose, isOpen }) => {
                                     {/* AuthorName */}
                                     <div className='flex'>
                                         <p className='font-semibold'>AuthorName : </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{book.authorName} </p>
                                     </div>
                                     {/* Genre */}
                                     <div className='flex'>
                                         <p className='font-semibold' >Genre: </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{book.genre}</p>
                                     </div>
                                     {/* Edition */}
                                     <div className='flex'>
                                         <p className='font-semibold' >Edition: </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{book.edition}</p>
                                     </div>
                                 </div>
                                 {/* Right */}
@@ -88,24 +63,24 @@ const ViewBook = ({ onClose, isOpen }) => {
                                     {/* Publication Year */}
                                     <div className='flex'>
                                         <p className='font-semibold'>Publication Year : </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{book.publicationYear}</p>
                                     </div>
                                     {/* Pages */}
                                     <div className='flex'>
                                         <p className='font-semibold' >Pages: </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{book.pages}</p>
                                     </div>
                                     {/* Count */}
                                     <div className='flex'>
                                         <p className='font-semibold' >Count: </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{book.count}</p>
                                     </div>
                                 </div>
                             </div>
                             {/* Date */}
                             <div className='flex justify-center items-center mb-5'>
                                 <p className='font-semibold'>Date : </p>
-                                <p className='ml-2 opacity-80'></p>
+                                <p className='ml-2 opacity-80'>{book.date}</p>
                             </div>
                         </div>
                     </ModalBody>

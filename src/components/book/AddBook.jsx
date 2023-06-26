@@ -3,13 +3,12 @@ import axios from 'axios'
 import { base_url_book } from '../../api/BootAPI'
 import '../css/Update.css'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const AddBook = () => {
 
     // Use state
-    const [book, setBook] = useState({
-
-    })
+    const [book, setBook] = useState([])
 
     // use navigate
     const nav = useNavigate()
@@ -21,16 +20,21 @@ const AddBook = () => {
         e.preventDefault();
     }
 
+    // Post a new book data to server
     const postDataToServer = (data) => {
         axios.post(`${base_url_book}`, data).then(
             (response) => {
-                nav("/librarian/personal-details")
+                // nav("/librarian/personal-details")
+                window.location.reload()
                 console.log(response.data)
+                toast.success("Successfully added a new book in library", { position: "top-right" })
             },
             (error) => {
                 console.log(error)
+                toast.error("Something went wrong...", { position: "top-right" })
             }
         )
+
     }
 
 
@@ -48,7 +52,7 @@ const AddBook = () => {
 
                     {/* Login Form */}
                     <div className='w-full flex justify-center'>
-                        <form className="shadow-lg space-y-6 mt-8 py-4" onSubmit={handleForm} method="POST">
+                        <form className="shadow-lg space-y-6 mt-2 py-4" onSubmit={handleForm} method="POST">
 
                             {/* All credentials */}
                             <div className='w-full flex flex-col items-center space-y-6 py-4'>

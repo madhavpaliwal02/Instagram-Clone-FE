@@ -7,52 +7,86 @@ import { MdDeleteSweep } from 'react-icons/md'
 import BookView from './BookView';
 import { useDisclosure } from '@chakra-ui/react';
 import '../css/Table.css'
+import { toast } from 'react-toastify';
+import BookDelete from './BookDelete';
 
 const BooksTotal = () => {
 
     // Use state
-    const [books, setBooks] = useState([
-
-    ])
+    const [books, setBooks] = useState([])
+    const [book, setBook] = useState('')
+    const [bookId, setBookId] = useState('')
 
     // Use Disclosure
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen: isOpenView, onOpen: onOpenView, onClose: onCloseView } = useDisclosure()
+    const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure()
 
-    // useEffect
+
+    // Handle view
+    const handleView = (id) => {
+        // console.log("id", id)
+        fetchBookFromServer(id)
+        onOpenView()
+    }
+
+    // Fetch book data from server
+    const fetchBookFromServer = (id) => {
+        axios.get(`${base_url_book}/` + id).then(
+            (response) => {
+                // console.log("book: ", response.data)
+                setBook(response.data)
+            },
+            (error) => {
+
+            }
+        )
+    }
+
+    // handle close view
+    const handleCloseView = () => {
+        setBook('')
+        onCloseView()
+    }
+
+    // use effect
     useEffect(() => {
+        console.log("fetch")
         fetchBooksFromServer()
-    }, [])
+    }, []);
 
-    // Fetch data from server
+    // Fetch books from server
     const fetchBooksFromServer = () => {
         axios.get(`${base_url_book}`).then(
             (response) => {
                 setBooks(response.data)
+                console.log(books)
             },
             (error) => {
-                console.log(error)
+
             }
         )
-    }
-
-    // handle View
-    const handleView = (book) => {
-        // localStorage.setItem("book", book)
-        onOpen()
     }
 
     // handle delete
-    const deleteBook = (id) => {
-        axios.delete(`${base_url_book}/` + id).then(
+    const handleDelete = (data) => {
+        onOpenDelete()
+        setBookId(data)
+    }
+
+    // handle delete
+    const deleteBook = () => {
+        axios.delete(`${base_url_book}/${bookId}`).then(
             (response) => {
+                window.location.reload();
                 console.log(response.data)
+                toast.success("Successfully Deleted the book...", { position: "top-right" })
             },
             (error) => {
                 console.log(error)
+                toast.error("Something went wrong...", { position: "top-right" })
             }
         )
     }
-
 
     // Use Location
     const { state } = useLocation();
@@ -83,30 +117,32 @@ const BooksTotal = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            [1, 1, 1, 1, 1].map((book) =>
+                        {(books.length > 0) ?
+                            books.map((b) =>
                                 <tr>
-                                    <td className='tBody'>{book.title}</td>
-                                    <td className='tBody'>{book.authorName}</td>
-                                    <td className='tBody'>{book.genre}</td>
-                                    <td className='tBody'>{book.edition}</td>
-                                    <td className='tBody'>{book.publicationYear}</td>
-                                    <td className='tBody'>{book.pages}</td>
+                                    <td className='tBody'>{b.title}</td>
+                                    <td className='tBody'>{b.authorName}</td>
+                                    <td className='tBody'>{b.genre}</td>
+                                    <td className='tBody'>{b.edition}</td>
+                                    <td className='tBody'>{b.publicationYear}</td>
+                                    <td className='tBody'>{b.pages}</td>
                                     <td className='tBody'>
                                         <div className='flex justify-center items-center space-x-4'>
                                             {/* View Book Modal */}
                                             <div className='text-2xl cursor-pointer'>
-                                                <RiBook2Fill onClick={() => handleView(book)} />
-                                                <BookView isOpen={isOpen} onClose={onClose} />
+                                                <RiBook2Fill onClick={() => handleView(b.bookId)} />
+                                                <BookView isOpen={isOpenView} onClose={handleCloseView} book={book} />
                                             </div>
                                             {/* Delete Book */}
                                             <div className='text-2xl cursor-pointer'>
-                                                <MdDeleteSweep className='text-2xl' onClick={() => deleteBook(book.bookId)} />
+                                                <MdDeleteSweep className='text-2xl' onClick={() => handleDelete(b.bookId)} />
+                                                <BookDelete isOpen={isOpenDelete} onClose={onCloseDelete} deleteBook={deleteBook} />
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                             )
+                            : <div></div>
                         }
                     </tbody>
                 </table>
