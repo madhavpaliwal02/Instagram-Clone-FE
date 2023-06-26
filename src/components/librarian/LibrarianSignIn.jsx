@@ -15,27 +15,34 @@ const LibrarianSignIn = () => {
     // Use Navigation
     const nav = useNavigate();
 
-
+    // Handle login form
     const handleLogin = (e) => {
         checkLogin(user)
         e.preventDefault();
-        // nav("/librarian/personal-details")
     }
 
     // validate user
     const checkLogin = (data) => {
-        // axios.post(`${base_url_librarian}/login`, data).then(
-        //     (response) => {
-        //         // console.log(response.data)
-        //         localStorage.setItem("libId", response.data)
-        nav("/librarian/personal-details")
-        toast.success("Successfully login to the Dashboard", { position: "top-right" })
-        //     },
-        //     (error) => {
-        //         console.log(error)
-        //         nav("/librarian")
-        //     }
-        // )
+        axios.post(`${base_url_librarian}/login`, data).then(
+            (response) => {
+                // console.log(response.data)
+                if (response.data === 'admin') {
+                    localStorage.setItem("role", response.data)
+                    nav("/librarian/admin/total-librarians")
+                    toast.success("Welcome Admin !", { position: "top-right" })
+                }
+                else {
+                    localStorage.setItem("libId", response.data)
+                    nav("/librarian/personal-details")
+                    toast.success("Successfully login to the Dashboard", { position: "top-right" })
+                }
+            },
+            (error) => {
+                console.log(error)
+                nav("/librarian")
+                toast.error("Invalid credentials", { position: "top-right" })
+            }
+        )
     }
 
 
@@ -50,12 +57,6 @@ const LibrarianSignIn = () => {
 
                         {/* Email */}
                         <div class="relative">
-                            <div class="absolute right-0 mt-4"><svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            </div>
                             <label for='email' class="form-label">Email</label>
                             <input id='email' name='email' class="form-input" type="email" required placeholder="Type your mail id"
                                 onChange={(e) => {
@@ -77,7 +78,7 @@ const LibrarianSignIn = () => {
                         {/* Remember */}
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
-                                <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 bg-indigo-500 focus:ring-indigo-400 border-gray-300 rounded" />
+                                <input id="remember_me" name="remember_me" required type="checkbox" class="h-4 w-4 bg-indigo-500 focus:ring-indigo-400 border-gray-300 rounded" />
                                 <label for="remember_me" class="ml-2 block text-sm text-gray-900">
                                     Remember me
                                 </label>

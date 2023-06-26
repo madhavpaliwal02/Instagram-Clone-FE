@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { menu } from './LibrarySidebarConfig'
 
 const LibrarianSidebar = () => {
@@ -10,10 +11,17 @@ const LibrarianSidebar = () => {
     // Navigation
     const nav = useNavigate();
 
+    // Getting role
+    const role = localStorage.getItem("role")
+
     // Handle Logout
     const handleLogout = () => {
         localStorage.removeItem("libId")
+        if (role === "admin") {
+            localStorage.removeItem("role")
+        }
         nav("/librarian")
+        toast.success("Successfully Log-out...")
     }
 
     // Handle onclick tab
@@ -23,6 +31,10 @@ const LibrarianSidebar = () => {
         switch (title) {
             case "Personal Details":
                 nav("/librarian/personal-details");
+                break;
+
+            case "Total Librarians":
+                nav("/librarian/admin/total-librarians");
                 break;
 
             case "Total Students Available":
@@ -55,6 +67,17 @@ const LibrarianSidebar = () => {
         <div className='fixed bottom-0 h-[78vh]'>
             < div className='px-10' >
                 <div className='py-8'>
+                    {/* For admin only */}
+                    {(role === 'admin') ?
+                        < div onClick={() => handleTabClick("Total Librarians")} className='flex items-center mb-5 cursor-pointer text-lg'>
+                            <p className={`${activeTab === "Total Librarians" ? "font-bold" : "font-semibold"}`}>
+                                Total Librarians</p>
+                        </div> :
+                        < div onClick={() => handleTabClick("Personal Details")} className='flex items-center mb-5 cursor-pointer text-lg'>
+                            <p className={`${activeTab === "Personal Details" ? "font-bold" : "font-semibold"}`}>
+                                Personal Details</p>
+                        </div>
+                    }
                     {
                         menu.map((item) =>
                             <div onClick={() => handleTabClick(item.title)} className='flex items-center mb-5 cursor-pointer text-lg'>

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { base_url_librarian } from '../../api/BootAPI'
@@ -8,14 +8,11 @@ import '../css/Update.css'
 const LibrarianUpdate = () => {
 
     // use state
-    const [librarian, setLibrarian] = useState([
-
-    ])
+    const [librarian, setLibrarian] = useState('')
 
     // Use Location
     const { state } = useLocation();
-    const { libObj } = state;
-
+    const { libId } = state;
 
     // Use navigate
     const nav = useNavigate()
@@ -25,14 +22,40 @@ const LibrarianUpdate = () => {
         nav("/librarian/personal-details")
     }
 
+    // use effect
+    useEffect(() => {
+        // console.log("libId: ", libId)
+        fetchOldDataFromServer()
+    }, [])
+
+    // fetch old data from server
+    const fetchOldDataFromServer = () => {
+        axios.get(`${base_url_librarian}/${libId}`).then(
+            (response) => {
+                setLibrarian(response.data)
+                console.log("response.data", response.data)
+            },
+            (error) => { }
+        )
+    }
+
+    // handle change
+    const handleChange = (e) => {
+        const { name, value } = e.target
+
+        setLibrarian({ ...librarian, [name]: value })
+    }
+
     // Handle Update Form
     const handleUpdateForm = (e) => {
-        updateLibrarianData(librarian, librarian.libId)
+        console.log("handle")
+        updateLibrarianData(librarian, libId)
         e.preventDefault()
     }
 
     // Update the data on the server
     const updateLibrarianData = (data, id) => {
+        console.log("Data:", data, " id: ", id)
         axios.put(`${base_url_librarian}/${id}`, data).then(
             (response) => {
                 toast.success("Librarian Updated Succesfully", { position: "top-right" })
@@ -42,6 +65,7 @@ const LibrarianUpdate = () => {
                 toast.error("Something went wrong, try again later", { position: "top-right" })
             }
         )
+        // window.location.reload()
     }
 
     return (
@@ -56,52 +80,44 @@ const LibrarianUpdate = () => {
 
                     {/* Login Form */}
                     <div className=' flex justify-center'>
-                        <form className="space-y-6 mt-8 w-[30%]" action={handleUpdateForm} method="PUT">
+                        <form className="space-y-6 mt-8 w-[30%]" onSubmit={handleUpdateForm} method="PUT">
 
-                            {/* Top 4 credentials */}
+                            {/* All 4 credentials */}
                             <div className='justify-between items-center space-y-6'>
 
                                 {/* Name */}
                                 <div>
-                                    <input value={libObj.name} name="name" type="text" placeholder='Name' required className="form-input"
-                                        onChange={(e) => {
-                                            setLibrarian({ ...librarian, name: e.target.default })
-                                        }} />
+                                    <input value={librarian.name} name="name" type="text" placeholder='Name' required className="form-input"
+                                        onChange={handleChange} />
                                 </div>
 
                                 {/* Email */}
                                 <div>
-                                    <input value={libObj.email} name="email" type="email" placeholder='E-mail' autocomplete="email" required className="form-input"
-                                        onChange={(e) => {
-                                            setLibrarian({ ...librarian, email: e.target.default })
-                                        }} />
+                                    <input value={librarian.email} name="email" type="email" placeholder='E-mail' autocomplete="email" required className="form-input"
+                                        onChange={handleChange} />
                                 </div>
 
                                 {/* Password */}
                                 <div>
-                                    <input value={libObj.password} name="password" type="password" placeholder='Password' autocomplete="current-password" required className="form-input"
-                                        onChange={(e) => {
-                                            setLibrarian({ ...librarian, password: e.target.default })
-                                        }} />
+                                    <input value={librarian.password} name="password" type="password" placeholder='Password' autocomplete="current-password" required className="form-input"
+                                        onChange={handleChange} />
                                 </div>
 
                                 {/* Contact */}
                                 <div>
-                                    <input value={libObj.contact} name="contact" type="text" placeholder='Contact' required className="form-input"
-                                        onChange={(e) => {
-                                            setLibrarian({ ...librarian, contact: e.target.default })
-                                        }} />
+                                    <input value={librarian.contact} name="contact" type="text" placeholder='Contact' required className="form-input"
+                                        onChange={handleChange} />
                                 </div>
 
                                 {/* Gender */}
                                 <div className='flex justify-left space-x-5'>
                                     {/* <span>Gender </span> */}
                                     <div className='flex items-center'>
-                                        <input type="radio" name="gender" id="male" value="Male" />
+                                        <input type="radio" name="gender" id="male" value="Male" onChange={handleChange} checked={librarian.gender === 'Male'} />
                                         <label className='px-2' for="male">Male</label>
                                     </div>
                                     <div>
-                                        <input type="radio" name="gender" id="female" value="Female" />
+                                        <input type="radio" name="gender" id="female" value="Female" onChange={handleChange} checked={librarian.gender === 'Female'} />
                                         <label className='px-2' for="female">Female</label>
                                     </div>
                                 </div>

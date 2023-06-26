@@ -20,7 +20,7 @@ const LibrarianPersonalDetails = () => {
 
   // Handle Update Librarian
   const handleUpdateLibrarian = () => {
-    nav("/librarian/update", { state: { libObj: librarian } })
+    nav("/librarian/update", { state: { libId: librarian.libId } })
   }
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const LibrarianPersonalDetails = () => {
           </div>
 
           {/* Update */}
-          <div onClick={handleUpdateLibrarian} className='w-[7%] flex items-center justify-center text-3xl cursor-pointer hover:text-2xl'>
+          <div onClick={() => handleUpdateLibrarian()} className='w-[7%] flex items-center justify-center text-3xl cursor-pointer hover:text-2xl'>
             <FaUserEdit className='hover:shadow-md' />
           </div>
         </div>

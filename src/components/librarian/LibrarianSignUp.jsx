@@ -7,9 +7,7 @@ import '../css/Login.css'
 const LibrarianSignUp = () => {
 
   // use state
-  const [librarian, setlibrarian] = useState({
-
-  })
+  const [librarian, setlibrarian] = useState([])
 
   // Handle form
   const handleLibrarianForm = (e) => {
@@ -23,18 +21,15 @@ const LibrarianSignUp = () => {
     axios.post(`${base_url_librarian}`, data).then(
       (response) => {
         console.log("data: ", response.data)
+        window.location.reload()
         toast.success("Librarian Added Successfully", { position: "top-right" })
       },
       (error) => {
         console.log(error)
+        toast.error("Something went wrong...", { position: "top-right" })
       }
     );
   }
-
-  // // use Effect
-  // useEffect(() => {
-
-  // })
 
 
   return (
@@ -96,11 +91,15 @@ const LibrarianSignUp = () => {
             <div className='flex justify-left mt-4 space-x-5'>
               {/* <span>Gender </span> */}
               <div className='flex' >
-                <input type="radio" name="gender" id="male" value="Male" />
+                <input type="radio" name="gender" id="male" value="Male" onChange={(e) => {
+                  setlibrarian({ ...librarian, gender: e.target.value });
+                }} />
                 <label className='px-2' for="male">Male</label>
               </div>
               <div>
-                <input type="radio" name="gender" id="female" value="Female" />
+                <input type="radio" name="gender" id="female" value="Female" onChange={(e) => {
+                  setlibrarian({ ...librarian, gender: e.target.value });
+                }} />
                 <label className='px-2' for="female">Female</label>
               </div>
             </div>

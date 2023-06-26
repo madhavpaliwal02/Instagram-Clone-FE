@@ -12,7 +12,59 @@ const LibrarianHome = () => {
         setCurrPage(!currPage);
     }
 
+    
+
     return (
+        <div className='my-6'>
+            {/* Header */}
+
+            <div className='text-3xl italic font-bold text-black-600 mb-8'>
+                <p className='w-[30%] m-auto  py-2'>
+                    {
+                        currPage ?
+                            "Welcome Back ! Librarian"
+                            :
+                            "Welcome Librarian"
+                    }
+                </p>
+            </div>
+
+            {/* Form Header */}
+            <div class="flex items-center justify-center space-x-2">
+                <span class="h-px w-16 bg-gray-300"></span>
+                <span class="text-gray-500 font-normal">
+                    {
+                        currPage ? "SIGN-IN" : "SIGN-UP"
+                    }
+                </span>
+                <span class="h-px w-16 bg-gray-300"></span>
+            </div>
+            {/* <div className='text-3xl italic font-bold text-indigo-600'>
+                <p className='w-[30%] m-auto shadow-md shadow-black-500/30 py-2'>
+                    {
+                        currPage ?
+                            "Librarian Sign-In"
+                            :
+                            "Librarian Sign-Up"
+                    }
+                </p>
+            </div> */}
+
+            {/* Login / Signup */}
+            <div className='flex justify-center items-center'>
+                {currPage ? <LibrarianSignIn /> : <LibrarianSignUp />}
+            </div>
+
+            {/* Switching b/w them */}
+            <div className='mt-6 flex justify-center text-sm text-gray-500'>
+                {
+                    currPage ? "Don't have an account ?" : "Already have an account ?"
+                }
+                <span className='text-blue-700 cursor-pointer'
+                    onClick={handleLogin}> Click Here...</span>
+            </div>
+        </div>
+
         // <div>
         //     <div class="relative min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8  bg-no-repeat bg-cover relative items-center"
         //     >
@@ -75,56 +127,6 @@ const LibrarianHome = () => {
         //         </div>
         //     </div>
         // </div>
-
-        <div className='my-6'>
-            {/* Header */}
-
-            <div className='text-3xl italic font-bold text-black-600 mb-8'>
-                <p className='w-[30%] m-auto  py-2'>
-                    {
-                        currPage ?
-                            "Welcome Back ! Librarian"
-                            :
-                            "Welcome Librarian"
-                    }
-                </p>
-            </div>
-
-            {/* Form Header */}
-            <div class="flex items-center justify-center space-x-2">
-                <span class="h-px w-16 bg-gray-300"></span>
-                <span class="text-gray-500 font-normal">
-                    {
-                        currPage ? "SIGN-IN" : "SIGN-UP"
-                    }
-                </span>
-                <span class="h-px w-16 bg-gray-300"></span>
-            </div>
-            {/* <div className='text-3xl italic font-bold text-indigo-600'>
-                <p className='w-[30%] m-auto shadow-md shadow-black-500/30 py-2'>
-                    {
-                        currPage ?
-                            "Librarian Sign-In"
-                            :
-                            "Librarian Sign-Up"
-                    }
-                </p>
-            </div> */}
-
-            {/* Login / Signup */}
-            <div className='flex justify-center items-center'>
-                {currPage ? <LibrarianSignIn /> : <LibrarianSignUp />}
-            </div>
-
-            {/* Switching b/w them */}
-            <div className='mt-6 flex justify-center text-sm text-gray-500'>
-                {
-                    currPage ? "Don't have an account ?" : "Already have an account ?"
-                }
-                <span className='text-blue-700 cursor-pointer'
-                    onClick={handleLogin}> Click Here...</span>
-            </div>
-        </div>
     )
 }
 
