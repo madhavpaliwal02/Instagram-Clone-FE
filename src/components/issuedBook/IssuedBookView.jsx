@@ -3,6 +3,7 @@ import { Modal, ModalOverlay, ModalContent, ModalBody, ModalHeader } from "@chak
 import { IoCloseSharp } from 'react-icons/io5'
 
 const IssuedIssuedBookView = ({ onClose, isOpen, issuedBook }) => {
+
     return (
         <div className='w-full'>
             <Modal size={"4xl"} onClose={onClose} isOpen={isOpen} isCentered>

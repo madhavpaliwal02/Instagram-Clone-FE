@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import logo from '../../images/logo.png'
+import logo from '../../images/Logo.png'
 
 //styles
 import './Navbar.css';
@@ -15,10 +15,10 @@ const Navbar = () => {
     }
     return (
         <div className='nav-style shadow-md shadow-black-100 z-10'>
-            <div className='flex mt-2 text-center'>
+            <div className='flex mt-1 text-center'>
                 {/* Logo */}
-                <div onClick={handleLogo} className='w-[20%] flex justify-center items-center cursor-pointer'>
-                    <img className='mobile-img w-20 h-20 rounded-full' src={logo} alt="/" />
+                <div className='w-[20%] flex justify-center items-center'>
+                    <img onClick={handleLogo} className='mobile-img w-30 h-20 cursor-pointer' src={logo} alt="/" />
                 </div>
                 {/* Text */}
                 <div className='w-full mt-2 flex  flex-col justify-center items-center absolute'>

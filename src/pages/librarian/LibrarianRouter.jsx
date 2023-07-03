@@ -22,8 +22,8 @@ const LibrarianRouter = () => {
                     <Route path='/total-students-auth' element={<StudentTotal />} />
                     <Route path='/add-book' element={<AddBook />} />
                     <Route path='/total-books' element={<BooksTotal />} />
-                    <Route path='/total-books-issued' element={<BooksTotal />} />
-                    <Route path='/total-students-book-issued' element={<IssuedBookTotal />} />
+                    <Route path='/total-books-issued' element={<IssuedBookTotal />} />
+                    {/* <Route path='/total-students-book-issued' element={<IssuedBookTotal />} /> */}
                     <Route path='/update' element={<LibrarianUpdate />} />
                     <Route path='/admin/total-librarians' element={<LibrarianTotal />} />
                 </Routes>

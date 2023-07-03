@@ -1,10 +1,12 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import Navbar from '../../components/navbar/Navbar'
 import HomePage from '../home/HomePage'
 import LibrarianHome from '../librarian/LibrarianHome'
 import LibrarianRouter from '../librarian/LibrarianRouter'
+import StudentHome from '../student/StudentHome';
+import StudentRouter from '../student/StudentRouter';
 
 
 
@@ -26,6 +28,8 @@ const Router = () => {
                     <Route path='/librarian/*' element={<LibrarianRouter />} />
 
                     {/* Student */}
+                    <Route path='/student' element={<StudentHome />} />
+                    <Route path='/student/*' element={<StudentRouter />} />
                 </Routes>
             </div>
         </div>

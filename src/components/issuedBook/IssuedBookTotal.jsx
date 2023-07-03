@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { base_url_issuedbook } from '../../api/BootAPI'
+import { base_url_issuedbook, base_url_librarian } from '../../api/BootAPI'
 import '../css/Table.css'
 import { RiBook2Fill } from 'react-icons/ri'
 import { MdDeleteSweep } from 'react-icons/md'
@@ -20,10 +20,9 @@ const IssuedBookTotal = () => {
   const { isOpen: isOpenView, onOpen: onOpenView, onClose: onCloseView } = useDisclosure()
   const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure()
 
-  // UseEffect
-  useEffect(() => {
-    fetchIssuedBooksFromServer()
-  }, [])
+  // Getting form local storage
+  const role = localStorage.getItem("role")
+  const libId = localStorage.getItem("libId")
 
   // Fetch the data from server
   const fetchIssuedBooksFromServer = () => {
@@ -38,24 +37,20 @@ const IssuedBookTotal = () => {
     )
   }
 
-  // Handle IssuedBook View Modal
-  const handleView = (id) => {
-    // localStorage.setItem("issuedbook", ibook)
-    fetchIssuedBookFromServer(id)
-    onOpenView()
+  // Fetch data for librarian
+  const fetchIssedBookLibrarian = (id) => {
+    axios.get(`${base_url_librarian}/issuedbook/` + id).then(
+      (response) => {
+        setIssuedBooks(response.data)
+      },
+      (error) => { }
+    )
   }
 
-  // Fetch the data from server
-  const fetchIssuedBookFromServer = (id) => {
-    axios.get(`${base_url_issuedbook}/` + id).then(
-      (response) => {
-        console.log(response.data)
-        setIssuedBook(response.data)
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
+  // Handle IssuedBook View Modal
+  const handleView = (data) => {
+    setIssuedBook(data)
+    onOpenView()
   }
 
   // handle close view
@@ -74,7 +69,6 @@ const IssuedBookTotal = () => {
   const deleteIssuedBook = () => {
     axios.delete(`${base_url_issuedbook}/${ibookId}`).then(
       (response) => {
-        window.location.reload();
         console.log(response.data)
         toast.success("Successfully Deleted the IssuedBook...", { position: "top-right" })
       },
@@ -83,7 +77,18 @@ const IssuedBookTotal = () => {
         toast.error("Something went wrong...", { position: "top-right" })
       }
     )
+    // onCloseDelete()
   }
+
+  // UseEffect
+  useEffect(() => {
+    if (role === "admin") {
+      fetchIssuedBooksFromServer()
+    } else {
+      fetchIssedBookLibrarian(libId)
+    }
+  }, [deleteIssuedBook])
+
 
   return (
     <div>
@@ -105,7 +110,7 @@ const IssuedBookTotal = () => {
           </thead>
           <tbody >
             {
-              [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((ib) =>
+              issuedBooks.map((ib) =>
                 <tr>
                   <td className='tBody'>Name</td>
                   <td className='tBody'>Roll No</td>
