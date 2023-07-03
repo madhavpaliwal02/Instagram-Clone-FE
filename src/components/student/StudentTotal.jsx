@@ -7,44 +7,57 @@ import { FaUserGraduate } from 'react-icons/fa'
 import { MdDeleteSweep } from 'react-icons/md'
 import { useDisclosure } from '@chakra-ui/react';
 import StudentView from './StudentView';
+import StudentDelete from './StudentDelete';
+import { toast } from 'react-toastify';
 
 const StudentTotal = () => {
 
     // Use state
-    const [students, setStudents] = useState([
-
-    ])
+    const [students, setStudents] = useState([])
+    const [student, setStudent] = useState([])
+    const [stuId, setStuId] = useState([])
 
     // Use disclosure
-    const { isOpen, onOpen, onClose } = useDisclosure()
-
-    // Use Effect
-    useEffect(() => {
-        getDataFromServer()
-    }, [])
-
-    // Handle Student Modal
-    const handleView = (student) => {
-        // localStorage.setItem("student", student)
-        onOpen()
-    }
+    const { isOpen: isOpenView, onOpen: onOpenView, onClose: onCloseView } = useDisclosure()
+    const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure()
 
     // Handle delete Student
-    const deleteStudent = (id) => {
-        axios.delete(`${base_url_student}/` + id).then(
+    const handleDeleteStudent = (id) => {
+        onOpenDelete()
+        setStuId(id)
+    }
+
+    // Delete student
+    const deleteStudent = () => {
+        axios.delete(`${base_url_student}/${stuId}`).then(
             (response) => {
-                console.log(response.data)
+                // console.log(response.data)
+                toast.success("Successfully Deleted the student", { position: "top-right" })
             },
             (error) => {
                 console.log(error)
+                toast.error("Something went wrong...", { position: "top-right" })
             }
         )
+        onCloseDelete()
+    }
+    
+    // Use Effect
+    useEffect(() => {
+        getDataFromServer()
+    }, [deleteStudent])
+
+    // Handle Student Modal
+    const handleView = (data) => {
+        setStudent(data)
+        onOpenView()
     }
 
     // Get Data from Server
     const getDataFromServer = () => {
         axios.get(`${base_url_student}`).then(
             (response) => {
+                // console.log(response.data)
                 setStudents(response.data)
             },
             (error) => {
@@ -80,7 +93,7 @@ const StudentTotal = () => {
                     </thead>
                     <tbody>
                         {
-                            [1, 1, 1, 1, 1].map((s) =>
+                            students.map((s) =>
                                 <tr>
                                     <td className='tBody'>{s.name}</td>
                                     <td className='tBody'>{s.rollNo}</td>
@@ -92,11 +105,12 @@ const StudentTotal = () => {
                                             {/* View Student Modal */}
                                             <div className='text-2xl cursor-pointer'>
                                                 <FaUserGraduate onClick={() => handleView(s)} />
-                                                <StudentView isOpen={isOpen} onClose={onClose} />
+                                                <StudentView isOpen={isOpenView} onClose={onCloseView} student={student} />
                                             </div>
                                             {/* Delete Student */}
                                             <div className='text-2xl cursor-pointer'>
-                                                <MdDeleteSweep className='text-2xl' onClick={() => deleteStudent(s.stuId)} />
+                                                <MdDeleteSweep className='text-2xl' onClick={() => handleDeleteStudent(s.stuId)} />
+                                                <StudentDelete isOpen={isOpenDelete} onClose={onCloseDelete} deleteStudent={deleteStudent} />
                                             </div>
                                         </div>
                                     </td>
