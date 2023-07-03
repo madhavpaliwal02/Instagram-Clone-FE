@@ -8,12 +8,17 @@ import { toast } from 'react-toastify'
 const LibrarianSignIn = () => {
 
     // use state
-    const [user, setUser] = useState({
-
-    })
+    const [user, setUser] = useState({})
 
     // Use Navigation
     const nav = useNavigate();
+
+    // handle change
+    const handleChange = (e) => {
+        const { name, value } = e.target
+
+        setUser({ ...user, [name]: value })
+    }
 
     // Handle login form
     const handleLogin = (e) => {
@@ -33,6 +38,7 @@ const LibrarianSignIn = () => {
                 }
                 else {
                     localStorage.setItem("libId", response.data)
+                    // localStorage.setItem("role", "librarian")
                     nav("/librarian/personal-details")
                     toast.success("Successfully login to the Dashboard", { position: "top-right" })
                 }
@@ -59,9 +65,7 @@ const LibrarianSignIn = () => {
                         <div class="relative">
                             <label for='email' class="form-label">Email</label>
                             <input id='email' name='email' class="form-input" type="email" required placeholder="Type your mail id"
-                                onChange={(e) => {
-                                    setUser({ ...user, email: e.target.value });
-                                }} />
+                                onChange={handleChange} />
                         </div>
 
                         {/* Password */}
@@ -70,9 +74,7 @@ const LibrarianSignIn = () => {
                                 Password
                             </label>
                             <input id='password' name='password' class="form-input" type="password" required placeholder="Enter your password"
-                                onChange={(e) => {
-                                    setUser({ ...user, password: e.target.value });
-                                }} />
+                                onChange={handleChange} />
                         </div>
 
                         {/* Remember */}

@@ -7,7 +7,13 @@ import '../css/Login.css'
 const LibrarianSignUp = () => {
 
   // use state
-  const [librarian, setlibrarian] = useState([])
+  const [librarian, setLibrarian] = useState([])
+
+  // handle change
+  const handlechange = (e) => {
+    const { name, value } = e.target
+    setLibrarian({ ...librarian, [name]: value })
+  }
 
   // Handle form
   const handleLibrarianForm = (e) => {
@@ -49,9 +55,7 @@ const LibrarianSignUp = () => {
                   Name
                 </label>
                 <input id='name' name="name" class="form-input" type="text" placeholder="Enter your name"
-                  onChange={(e) => {
-                    setlibrarian({ ...librarian, name: e.target.value });
-                  }} />
+                  onChange={handlechange} />
               </div>
 
               {/* Contact */}
@@ -59,9 +63,7 @@ const LibrarianSignUp = () => {
                 <label for="contact" class="form-label">
                   Contact
                 </label>
-                <input id='contact' name='contact' class="form-input" type="text" placeholder="Enter your contact" onChange={(e) => {
-                  setlibrarian({ ...librarian, contact: e.target.value });
-                }} />
+                <input id='contact' name='contact' class="form-input" type="text" placeholder="Enter your contact" onChange={handlechange} />
               </div>
 
             </div>
@@ -71,9 +73,7 @@ const LibrarianSignUp = () => {
               {/* Email */}
               <div class="relative">
                 <label for='email' class="form-label">Email</label>
-                <input id='email' name='email' class="form-input" type="email" placeholder="Type your mail id" onChange={(e) => {
-                  setlibrarian({ ...librarian, email: e.target.value });
-                }} />
+                <input id='email' name='email' class="form-input" type="email" placeholder="Type your mail id" onChange={handlechange} />
               </div>
 
               {/* Password */}
@@ -81,9 +81,7 @@ const LibrarianSignUp = () => {
                 <label for='password' class="form-label">
                   Password
                 </label>
-                <input id='password' name='password' class="form-input" type="password" placeholder="Enter your password" onChange={(e) => {
-                  setlibrarian({ ...librarian, password: e.target.value });
-                }} />
+                <input id='password' name='password' class="form-input" type="password" placeholder="Enter your password" onChange={handlechange} />
               </div>
             </div>
 
@@ -91,15 +89,11 @@ const LibrarianSignUp = () => {
             <div className='flex justify-left mt-4 space-x-5'>
               {/* <span>Gender </span> */}
               <div className='flex' >
-                <input type="radio" name="gender" id="male" value="Male" onChange={(e) => {
-                  setlibrarian({ ...librarian, gender: e.target.value });
-                }} />
+                <input type="radio" name="gender" id="male" value="Male" onChange={handlechange} />
                 <label className='px-2' for="male">Male</label>
               </div>
               <div>
-                <input type="radio" name="gender" id="female" value="Female" onChange={(e) => {
-                  setlibrarian({ ...librarian, gender: e.target.value });
-                }} />
+                <input type="radio" name="gender" id="female" value="Female" onChange={handlechange} />
                 <label className='px-2' for="female">Female</label>
               </div>
             </div>

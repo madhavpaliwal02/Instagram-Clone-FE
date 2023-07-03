@@ -16,7 +16,6 @@ const LibrarianPersonalDetails = () => {
 
   // Getting the libId
   const libId = localStorage.getItem("libId")
-  // console.log("LibId: ", libId)
 
   // Handle Update Librarian
   const handleUpdateLibrarian = () => {

@@ -16,17 +16,13 @@ const LibrarianTotal = () => {
     // Use disclosure
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    // Use Effect
-    useEffect(() => {
-        fetchDataFromServer()
-    }, [])
 
     // Fetch data from the server
     const fetchDataFromServer = () => {
         axios.get(`${base_url_librarian}`).then(
             (response) => {
                 setLibrarians(response.data)
-                console.log(response)
+                // console.log(response)
             },
             (error) => {
                 console.log(error)
@@ -44,15 +40,20 @@ const LibrarianTotal = () => {
     const deleteLibrarian = () => {
         axios.delete(`${base_url_librarian}/${libId}`).then(
             (response) => {
-                window.location.reload();
                 toast.success("Librarian Deleted Successfully", { position: "top-right" })
             },
-            (error) => { 
+            (error) => {
                 toast.error("Something went wrong...", { position: "top-right" })
             }
         )
-        // onClose()        
+        // onClose()
     }
+
+    // Use Effect
+    useEffect(() => {
+        fetchDataFromServer()
+    }, [deleteLibrarian])
+
 
     return (
         <div>
