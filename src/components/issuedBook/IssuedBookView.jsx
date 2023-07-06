@@ -14,7 +14,7 @@ const IssuedIssuedBookView = ({ onClose, isOpen, issuedBook }) => {
                         <div className='w-full flex justify-between'>
                             {/* IssuedBook Title */}
                             <div className='w-[95%] flex justify-center'>
-                                <div className='flex justify-left items-left text-2xl text-left font-semibold'>IssuedBook Title</div>
+                                <div className='flex justify-left items-left text-2xl text-left font-semibold'>{issuedBook.title}</div>
                             </div>
 
                             {/* Close Modal */}
@@ -29,7 +29,7 @@ const IssuedIssuedBookView = ({ onClose, isOpen, issuedBook }) => {
                             {/* Id */}
                             <div className='flex font-semibold opacity-80 justify-end'>
                                 <p className='font-semibold'>Id : </p>
-                                <p className='ml-2 opacity-80'></p>
+                                <p className='ml-2 opacity-80'>{issuedBook.ibookId}</p>
                             </div>
 
                             {/* Basic details */}
@@ -39,22 +39,22 @@ const IssuedIssuedBookView = ({ onClose, isOpen, issuedBook }) => {
                                     {/* Student Name */}
                                     <div className='flex'>
                                         <p className='font-semibold'>Student Name : </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{issuedBook.sname}</p>
                                     </div>
                                     {/* Course */}
                                     <div className='flex'>
                                         <p className='font-semibold' >Course: </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{issuedBook.course}</p>
                                     </div>
                                     {/* AuthorName */}
                                     <div className='flex'>
                                         <p className='font-semibold'>AuthorName : </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{issuedBook.authorName}</p>
                                     </div>
                                     {/* Librarian Name */}
                                     <div className='flex'>
                                         <p className='font-semibold'>Librarian Name : </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{issuedBook.lname}</p>
                                     </div>
                                 </div>
                                 {/* Right */}
@@ -62,29 +62,29 @@ const IssuedIssuedBookView = ({ onClose, isOpen, issuedBook }) => {
                                     {/* Roll No */}
                                     <div className='flex'>
                                         <p className='font-semibold'>Roll No : </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{issuedBook.rollNo}</p>
                                     </div>
                                     {/* Gender */}
                                     <div className='flex'>
                                         <p className='font-semibold' >Gender: </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{issuedBook.sgender}</p>
                                     </div>
                                     {/* Edition */}
                                     <div className='flex'>
                                         <p className='font-semibold' >Edition: </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{issuedBook.edition}</p>
                                     </div>
                                     {/* Gender */}
                                     <div className='flex'>
                                         <p className='font-semibold' >Gender: </p>
-                                        <p className='ml-2 opacity-80'></p>
+                                        <p className='ml-2 opacity-80'>{issuedBook.lgender}</p>
                                     </div>
                                 </div>
                             </div>
                             {/* Date */}
                             <div className='flex justify-center items-center mb-5'>
                                 <p className='font-semibold'>Date : </p>
-                                <p className='ml-2 opacity-80'></p>
+                                <p className='ml-2 opacity-80'>{issuedBook.date}</p>
                             </div>
                         </div>
                     </ModalBody>

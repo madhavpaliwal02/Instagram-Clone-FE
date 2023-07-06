@@ -87,7 +87,7 @@ const IssuedBookTotal = () => {
     } else {
       fetchIssedBookLibrarian(libId)
     }
-  }, [deleteIssuedBook])
+  }, [])
 
 
   return (
@@ -104,7 +104,9 @@ const IssuedBookTotal = () => {
               <th className='tHead tracking-wider'>Roll No</th>
               <th className='tHead tracking-wider'>Book's Title</th>
               <th className='tHead tracking-wider'>Author's Name</th>
-              <th className='tHead tracking-wider'>Librarian Name</th>
+              {(role === "admin") ?
+                <th className='tHead tracking-wider'>Librarian Name</th> : <div></div>
+              }
               <th className='tHead tracking-wider'>Action</th>
             </tr>
           </thead>
@@ -112,11 +114,13 @@ const IssuedBookTotal = () => {
             {
               issuedBooks.map((ib) =>
                 <tr>
-                  <td className='tBody'>Name</td>
-                  <td className='tBody'>Roll No</td>
-                  <td className='tBody'>Title</td>
-                  <td className='tBody'>Author's Name</td>
-                  <td className='tBody'>Librarian Name</td>
+                  <td className='tBody'>{ib.sname}</td>
+                  <td className='tBody'>{ib.rollNo}</td>
+                  <td className='tBody'>{ib.title}</td>
+                  <td className='tBody'>{ib.authorName}</td>
+                  {(role === "admin") ?
+                    <td className='tBody'>{ib.lname}</td> : <div></div>
+                  }
                   <td className='tBody'>
                     <div className='flex justify-center items-center space-x-4'>
                       {/* View IssuedBook Modal */}

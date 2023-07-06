@@ -50,11 +50,11 @@ const LibrarianSidebar = () => {
                 break;
 
             case "Total Books Available":
-                nav("/librarian/total-books", { state: { title: 'all' } });
+                nav("/librarian/total-books");
                 break;
 
             case "Total Books Issued":
-                nav("/librarian/total-books-issued", { state: { title: 'issued' } });
+                nav("/librarian/total-books-issued");
                 break;
 
             case "Total Student Issued Books":
