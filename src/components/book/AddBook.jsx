@@ -13,9 +13,16 @@ const AddBook = () => {
     // use navigate
     const nav = useNavigate()
 
+    // Handle form input
+    const handleChange = (e) => {
+        const { name, value } = e.target
+
+        setBook({ ...book, [name]: value })
+    }
+
     // handle Form
     const handleForm = (e) => {
-        console.log(book)
+        // console.log(book)
         postDataToServer(book)
         e.preventDefault();
     }
@@ -24,9 +31,8 @@ const AddBook = () => {
     const postDataToServer = (data) => {
         axios.post(`${base_url_book}`, data).then(
             (response) => {
-                // nav("/librarian/personal-details")
-                window.location.reload()
-                console.log(response.data)
+                nav("/librarian/total-books")
+                // console.log(response.data)
                 toast.success("Successfully added a new book in library", { position: "top-right" })
             },
             (error) => {
@@ -61,16 +67,12 @@ const AddBook = () => {
                                 <div className='w-full flex justify-around items-center'>
                                     {/* Title */}
                                     <div className='flex'>
-                                        <input name="title" type="text" placeholder='Title' required className="form-input" onChange={(e) => {
-                                            setBook({ ...book, title: e.target.value });
-                                        }}
+                                        <input name="title" type="text" placeholder='Title' required className="form-input" onChange={handleChange}
                                         />
                                     </div>
                                     {/* Author Name */}
                                     <div className='flex'>
-                                        <input name="authorName" type="text" placeholder='Author Name' required className="form-input" onChange={(e) => {
-                                            setBook({ ...book, authorName: e.target.value });
-                                        }} />
+                                        <input name="authorName" type="text" placeholder='Author Name' required className="form-input" onChange={handleChange} />
                                     </div>
                                 </div>
 
@@ -78,9 +80,7 @@ const AddBook = () => {
                                 <div>
                                     {/* Description */}
                                     <div>
-                                        <textarea name="description" type="text" placeholder='Description' required className="form-input" onChange={(e) => {
-                                            setBook({ ...book, description: e.target.value });
-                                        }} rows={2} cols={50} />
+                                        <textarea name="description" type="text" placeholder='Description' required className="form-input" onChange={handleChange} rows={2} cols={50} />
                                     </div>
                                 </div>
 
@@ -88,15 +88,11 @@ const AddBook = () => {
                                 <div className='w-full flex justify-around items-center'>
                                     {/* Genre */}
                                     <div>
-                                        <input name="genre" type="text" placeholder='Genre' required className="form-input" onChange={(e) => {
-                                            setBook({ ...book, genre: e.target.value });
-                                        }} />
+                                        <input name="genre" type="text" placeholder='Genre' required className="form-input" onChange={handleChange} />
                                     </div>
                                     {/* Publication */}
                                     <div>
-                                        <input name="publicationYear" type="text" required placeholder='Publication Year' className="form-input" onChange={(e) => {
-                                            setBook({ ...book, publicationYear: e.target.value });
-                                        }} />
+                                        <input name="publicationYear" type="text" required placeholder='Publication Year' className="form-input" onChange={handleChange} />
                                     </div>
                                 </div>
 
@@ -104,9 +100,7 @@ const AddBook = () => {
                                 <div>
                                     {/* Edition */}
                                     <div>
-                                        <input name="edition" type="text" placeholder='Edition' required className="form-input" onChange={(e) => {
-                                            setBook({ ...book, edition: e.target.value });
-                                        }} />
+                                        <input name="edition" type="text" placeholder='Edition' required className="form-input" onChange={handleChange} />
                                     </div>
                                 </div>
 
@@ -114,16 +108,12 @@ const AddBook = () => {
                                 <div className='w-full flex justify-between px-5 space-x-5'>
                                     {/* Count */}
                                     <div>
-                                        <input name="count" type="text" placeholder='Count' required className="form-input" onChange={(e) => {
-                                            setBook({ ...book, count: e.target.value });
-                                        }} />
+                                        <input name="count" type="text" placeholder='Count' required className="form-input" onChange={handleChange} />
                                     </div>
 
                                     {/* Pages */}
                                     <div>
-                                        <input name="pages" type="text" placeholder='Pages' required className="form-input" onChange={(e) => {
-                                            setBook({ ...book, pages: e.target.value });
-                                        }} />
+                                        <input name="pages" type="text" placeholder='Pages' required className="form-input" onChange={handleChange} />
                                     </div>
                                 </div>
                             </div>
