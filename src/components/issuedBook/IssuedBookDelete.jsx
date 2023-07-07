@@ -10,7 +10,7 @@ const IssuedBookDelete = ({ isOpen, onClose, deleteIssuedBook }) => {
                 <ModalContent>
                     <ModalHeader>Do you want to delete the IssuedBook ?</ModalHeader>
                     <ModalFooter>
-                        <Button colorScheme="green" mr={3} onClick="">
+                        <Button colorScheme="green" mr={3} onClick={deleteIssuedBook}>
                             Yes
                         </Button>
                         <Button colorScheme="red" onClick={onClose}>

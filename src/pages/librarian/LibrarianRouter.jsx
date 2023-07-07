@@ -8,6 +8,8 @@ import BooksTotalAll from '../../components/book/BooksTotalAll'
 import IssuedBookTotal from '../../components/issuedBook/IssuedBookTotal'
 import LibrarianUpdate from '../../components/librarian/LibrarianUpdate'
 import LibrarianTotal from '../../components/librarian/LibrarianTotal'
+import BookUpdate from '../../components/book/BookUpdate'
+import ReturnBookTotal from '../../components/returnBook/ReturnBookTotal'
 
 const LibrarianRouter = () => {
     return (
@@ -23,9 +25,10 @@ const LibrarianRouter = () => {
                     <Route path='/add-book' element={<AddBook />} />
                     <Route path='/total-books' element={<BooksTotalAll />} />
                     <Route path='/total-books-issued' element={<IssuedBookTotal />} />
-                    {/* <Route path='/total-students-book-issued' element={<IssuedBookTotal />} /> */}
                     <Route path='/update' element={<LibrarianUpdate />} />
                     <Route path='/admin/total-librarians' element={<LibrarianTotal />} />
+                    <Route path='/book-update' element={<BookUpdate />} />
+                    <Route path='/total-books-return' element={<ReturnBookTotal />} />
                 </Routes>
             </div>
         </div>

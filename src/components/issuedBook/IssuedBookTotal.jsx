@@ -70,14 +70,15 @@ const IssuedBookTotal = () => {
     axios.delete(`${base_url_issuedbook}/${ibookId}`).then(
       (response) => {
         console.log(response.data)
+        window.location.reload()
         toast.success("Successfully Deleted the IssuedBook...", { position: "top-right" })
       },
       (error) => {
         console.log(error)
         toast.error("Something went wrong...", { position: "top-right" })
+        onCloseDelete()
       }
     )
-    // onCloseDelete()
   }
 
   // UseEffect
@@ -129,10 +130,13 @@ const IssuedBookTotal = () => {
                         <IssuedBookView isOpen={isOpenView} onClose={handleCloseView} issuedBook={issuedBook} />
                       </div>
                       {/* Delete IssuedBook */}
-                      <div className='text-2xl cursor-pointer'>
-                        <MdDeleteSweep className='text-2xl' onClick={() => handleDelete(ib.ibookId)} />
-                        <IssuedBookDelete isOpen={isOpenDelete} onClose={onCloseDelete} deleteIssuedBook={deleteIssuedBook} />
-                      </div>
+                      {(role === "admin") ?
+                        < div className='text-2xl cursor-pointer'>
+                          <MdDeleteSweep className='text-2xl' onClick={() => handleDelete(ib.ibookId)} />
+                          <IssuedBookDelete isOpen={isOpenDelete} onClose={onCloseDelete} deleteIssuedBook={deleteIssuedBook} />
+                        </div> : <div></div>
+                      }
+
                     </div>
                   </td>
                 </tr>
@@ -141,7 +145,7 @@ const IssuedBookTotal = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </div >
   )
 }
 
