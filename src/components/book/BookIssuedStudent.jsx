@@ -4,8 +4,10 @@ import React, { useEffect, useState } from 'react'
 import { FaBookOpen } from 'react-icons/fa'
 import { MdBookmarkRemove } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
-import { base_url_student } from '../../api/BootAPI'
+import { base_url_returnbook, base_url_student } from '../../api/BootAPI'
 import BookView from './BookView';
+import { toast } from 'react-toastify'
+import BookReturn from './BookReturn'
 
 const IssuedBookStudent = () => {
 
@@ -37,9 +39,25 @@ const IssuedBookStudent = () => {
     }
 
     // handle return book
-    // const handleReturn = (bId)
+    const handleReturn = (bId) => {
+        setBookId(bId)
+        onOpenReturn();
+    }
 
     // Return a book
+    const returnBook = () => {
+        axios.post(`${base_url_returnbook}/${bookId}`,).then(
+            (response) => {
+                console.log("ReturnBook: ", response.data)
+                window.location.reload()
+                toast.success("Book Returned Successfully...", { position: "top-right" })
+            }, (error) => {
+                console.log(error)
+                toast.error("Something went wrong...", { position: "top-right" })
+            }
+        )
+        onCloseReturn()
+    }
 
     // Fetch all issued book for a student
     const fetchStudentIssuedBook = () => {
@@ -99,7 +117,8 @@ const IssuedBookStudent = () => {
 
                                             {/* Return Book  */}
                                             < div className='text-2xl cursor-pointer'>
-                                                <MdBookmarkRemove className='text-2xl' />
+                                                <MdBookmarkRemove className='text-2xl' onClick={() => handleReturn(b.bookId)} />
+                                                <BookReturn isOpen={isOpenReturn} onClose={onCloseReturn} returnBook={returnBook} />
                                             </div>
 
                                         </div>

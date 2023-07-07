@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { base_url_book, base_url_student } from '../../api/BootAPI';
-import { MdDeleteSweep } from 'react-icons/md'
+import { base_url_book } from '../../api/BootAPI';
+import { MdBookmarkAdd, MdDeleteSweep } from 'react-icons/md'
 import BookView from './BookView';
 import { useDisclosure } from '@chakra-ui/react';
 import '../css/Table.css'
 import { toast } from 'react-toastify';
 import BookDelete from './BookDelete';
 import { FaBookOpen } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const BooksTotal = () => {
 
@@ -18,9 +19,10 @@ const BooksTotal = () => {
 
     // Use Disclosure
     const { isOpen: isOpenView, onOpen: onOpenView, onClose: onCloseView } = useDisclosure()
+    const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure()
 
-    // Getting stuId - student
-    const sId = localStorage.getItem("stuId")
+    // use navigate
+    const nav = useNavigate()
 
     // Handle view
     const handleView = (data) => {
@@ -34,11 +36,11 @@ const BooksTotal = () => {
         onCloseView()
     }
 
-
-    /* Librarian/admin access */
-
-    // Use Disclosure
-    const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure()
+    // Handle Udpate
+    const handleUpdate = (id) => {
+        nav("/librarian/book-update", { state: { bId: id } })
+        // localStorage.setItem("bookId", data)
+    }
 
     // Fetch books from server
     const fetchAllBooksFromServer = () => {
@@ -119,6 +121,11 @@ const BooksTotal = () => {
                                             <div className='text-2xl cursor-pointer'>
                                                 <FaBookOpen onClick={() => handleView(b)} />
                                                 <BookView isOpen={isOpenView} onClose={handleCloseView} book={book} />
+                                            </div>
+
+                                            {/* Edit Book */}
+                                            <div className='text-2xl cursor-pointer'>
+                                                <MdBookmarkAdd onClick={() => handleUpdate(b.bookId)} />
                                             </div>
 
                                             {/* Delete Book */}

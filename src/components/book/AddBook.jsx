@@ -43,9 +43,6 @@ const AddBook = () => {
 
     }
 
-
-
-
     return (
         <div>
             <div className='w-[100%]'>
