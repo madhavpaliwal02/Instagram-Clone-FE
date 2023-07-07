@@ -10,9 +10,7 @@ const LibrarianPersonalDetails = () => {
   const nav = useNavigate();
 
   // Use state
-  const [librarian, setLibrarian] = useState({
-
-  })
+  const [librarian, setLibrarian] = useState('')
 
   // Getting the libId
   const libId = localStorage.getItem("libId")
