@@ -15,13 +15,15 @@ const Navbar = () => {
     }
     return (
         <div className='nav-style shadow-md shadow-black-100 z-10'>
-            <div className='flex mt-1 text-center'>
+            <div className='navbar'>
                 {/* Logo */}
-                <div className='w-[20%] flex justify-center items-center'>
-                    <img onClick={handleLogo} className='mobile-img w-30 h-20 cursor-pointer' src={logo} alt="/" />
+                <div className='logo'>
+                    {/* w-[20%] flex justify-center items-center */}
+                    <img onClick={handleLogo} className='w-30 h-20 cursor-pointer' src={logo} alt="/" />
                 </div>
                 {/* Text */}
-                <div className='w-full mt-2 flex  flex-col justify-center items-center absolute'>
+                <div className='header'>
+                    {/* w-full mt-2 flex  flex-col justify-center items-center absolute */}
                     <p className='text-3xl font-medium hover:font-bold antialiased italic'>Welcome to the LIMSY</p>
                     <p className='text-sm opacity-60'>A Library Management System</p>
                 </div>

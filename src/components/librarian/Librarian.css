@@ -1,0 +1,95 @@
+form .right {
+    margin-top: 2rem;
+}
+
+.personal-details .left div,
+.personal-details .right div {
+    margin: 2rem 0;
+}
+
+#menu-icon {
+    display: none;
+}
+
+@media (max-width:1100px) {
+    .pd-box {
+        margin-left: 5rem;
+        /* width: 80%; */
+    }
+
+    .personal-details {
+        flex-direction: column;
+    }
+
+    .personal-details .left {
+        margin-left: 4rem;
+        /* margin-bottom: 0; */
+    }
+
+    .personal-details .left div,
+    .personal-details .right div {
+        margin: .8rem 0;
+        /* margin-left: 0; */
+    }
+
+    .update {
+        margin-right: 2rem;
+    }
+}
+
+@media (max-width:800px) {
+    .personal-details {
+        text-align: left;
+        margin-bottom: 0;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width:700px) {
+    html {
+        font-size: 80%;
+    }
+
+    .personal-details .left {
+        margin-left: 2rem;
+    }
+}
+
+@media (max-width:500px) {
+    html {
+        /* font-size: 80%; */
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    #menu-icon {
+        width: 100%;
+        display: block;
+    }
+
+    .sidebar-content {
+        width: 0;
+    }
+
+    .main-content,
+    .pd-box {
+        /* display: block; */
+        width: 100vw;
+    }
+
+    .sign-up .form div {
+        flex-direction: column;
+    }
+
+    form .right {
+        margin-top: 0;
+    }
+
+    .form-item {
+        margin-left: 0;
+        padding: .4rem 0;
+
+    }
+}

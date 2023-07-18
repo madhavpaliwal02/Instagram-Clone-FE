@@ -1,0 +1,9 @@
+@media (max-width:450px) {
+    .sign-up{
+        width: 70%;
+    }
+
+    .gender{
+        flex-direction: column;
+    }
+}

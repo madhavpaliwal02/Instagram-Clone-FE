@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { base_url_librarian } from '../../api/BootAPI'
 import '../css/Login.css'
+import './Librarian.css'
 
 const LibrarianSignUp = () => {
 
@@ -39,18 +40,18 @@ const LibrarianSignUp = () => {
 
 
   return (
-    <div className='w-[40%] my-4'>
+    <div className='sign-up my-4'>
       {/* SignUp Form */}
       <div className='flex justify-center'>
         <form onSubmit={handleLibrarianForm} className="space-y-5 mt-2 " action="#" method="POST">
 
           {/* Form Grids */}
-          <div className='flex flex-col justify-around items-center'>
+          <div className='form flex flex-col justify-around items-center'>
             {/* Left */}
-            <div className='flex'>
+            <div className='left flex'>
 
               {/* Name */}
-              <div class="content-center">
+              <div class="form-item content-center">
                 <label for="name" class="form-label">
                   Name
                 </label>
@@ -59,7 +60,7 @@ const LibrarianSignUp = () => {
               </div>
 
               {/* Contact */}
-              <div class="ml-8 content-center">
+              <div class="form-item ml-8 content-center">
                 <label for="contact" class="form-label">
                   Contact
                 </label>
@@ -69,15 +70,15 @@ const LibrarianSignUp = () => {
             </div>
 
             {/* Right */}
-            <div className='flex mt-8'>
+            <div className='right flex'>
               {/* Email */}
-              <div class="relative">
+              <div class="form-item">
                 <label for='email' class="form-label">Email</label>
                 <input id='email' name='email' class="form-input" type="email" placeholder="Type your mail id" onChange={handlechange} />
               </div>
 
               {/* Password */}
-              <div class="ml-8 content-center">
+              <div class="form-item ml-8 content-center">
                 <label for='password' class="form-label">
                   Password
                 </label>
@@ -86,9 +87,9 @@ const LibrarianSignUp = () => {
             </div>
 
             {/* Gender */}
-            <div className='flex justify-left mt-4 space-x-5'>
+            <div className='flex mt-4 space-x-5'>
               {/* <span>Gender </span> */}
-              <div className='flex' >
+              <div >
                 <input type="radio" name="gender" id="male" value="Male" onChange={handlechange} />
                 <label className='px-2' for="male">Male</label>
               </div>

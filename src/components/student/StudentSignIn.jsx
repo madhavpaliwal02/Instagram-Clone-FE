@@ -45,7 +45,7 @@ const StudentSignIn = () => {
 
 
     return (
-        <div className='w-[30%]'>
+        <div className=''>
             <div className="flex min-h-full flex-col justify-center px-6 py-8 lg:px-8">
 
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">

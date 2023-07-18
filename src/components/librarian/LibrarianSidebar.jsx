@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { menu } from './LibrarySidebarConfig'
+import { IoMenu } from 'react-icons/io5'
+import './Librarian.css'
 
 const LibrarianSidebar = () => {
 
@@ -66,9 +68,10 @@ const LibrarianSidebar = () => {
     }
 
     return (
-        <div className='fixed bottom-0 h-[78vh]'>
-            < div className='px-10' >
-                <div className='py-8'>
+        <div className='sidebar-box fixed bottom-0 h-[78vh]'>
+            <div id="menu-icon"> <IoMenu /> </div>
+            < div className='sidebar px-10' >
+                <div className=' py-8'>
                     {/* For admin only */}
                     {(role === 'admin') ?
                         < div onClick={() => handleTabClick("Total Librarians")} className='flex items-center mb-5 cursor-pointer text-lg'>

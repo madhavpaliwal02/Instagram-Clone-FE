@@ -19,7 +19,7 @@ const StudentHome = () => {
 
             {/* Header */}
             <div className='text-3xl italic font-bold text-black-600 mb-8'>
-                <p className='w-[30%] m-auto  py-2'>
+                <p className='m-auto  py-2'>
                     {
                         currPage ?
                             "Welcome Back ! Student"

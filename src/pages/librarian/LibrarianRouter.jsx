@@ -10,11 +10,12 @@ import LibrarianUpdate from '../../components/librarian/LibrarianUpdate'
 import LibrarianTotal from '../../components/librarian/LibrarianTotal'
 import BookUpdate from '../../components/book/BookUpdate'
 import ReturnBookTotal from '../../components/returnBook/ReturnBookTotal'
+import '../../components/librarian/Librarian.css'
 
 const LibrarianRouter = () => {
     return (
         <div className='flex'>
-            <div className='w-[30%]'>
+            <div className='w-[30%] sidebar-content'>
                 <LibrarianSidebar />
             </div>
             <div className='w-[90%] mt-5'>

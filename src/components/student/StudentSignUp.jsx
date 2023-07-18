@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { base_url_student } from '../../api/BootAPI'
 import '../css/Login.css'
+import './Student.css'
 
 const StudentSignUp = () => {
 
@@ -40,7 +41,7 @@ const StudentSignUp = () => {
     }
 
     return (
-        <div className='w-[40%] my-4'>
+        <div className='sign-up my-4'>
             {/* SignUp Form */}
             <div className='flex justify-center'>
                 <form onSubmit={handleStudentForm} className="space-y-5" method="POST">
@@ -119,7 +120,7 @@ const StudentSignUp = () => {
                             </div>
 
                             {/* Gender */}
-                            <div className=' flex justify-center items-center mt-4 space-x-4'>
+                            <div className='gender flex justify-center items-center mt-4 space-x-4'>
                                 {/* <span>Gender </span> */}
                                 <div className='flex' >
                                     <input type="radio" name="gender" id="male" value="Male" onChange={handlechange} />

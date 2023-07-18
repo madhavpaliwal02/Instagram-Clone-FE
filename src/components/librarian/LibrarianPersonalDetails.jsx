@@ -3,6 +3,7 @@ import { FaUserEdit } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { base_url_librarian } from '../../api/BootAPI';
+import './Librarian.css'
 
 const LibrarianPersonalDetails = () => {
 
@@ -39,17 +40,17 @@ const LibrarianPersonalDetails = () => {
 
 
   return (
-    <div>
+    <div className='pd-box'>
       {/* Header */}
       <div className='text-3xl italic justify-center items-center'>
         <p className='w-[30%] m-auto shadow-md shadow-black-500/30 py-2'>Personal Details</p>
       </div>
 
       {/* Personal Details */}
-      <div className='flex flex-col w-[95%] mx-auto justify-center items-center mt-12 border py-4 bg-wheat-200 shadow-lg shadow-black-300/50 hover:shadow-black-300/40'>
+      <div className='pd-content flex flex-col w-[95%] mx-auto justify-center items-center mt-12 border py-4 bg-wheat-200 shadow-lg shadow-black-300/50 hover:shadow-black-300/40'>
 
         {/* Header + Update */}
-        <div className='w-full flex justify-between'>
+        <div className='update w-full flex justify-between'>
           {/* Personal Details : Header */}
           <div className='w-[90%] flex justify-center'>
             <div className='flex justify-left items-left text-2xl text-left font-semibold'>About Me</div>
@@ -62,40 +63,40 @@ const LibrarianPersonalDetails = () => {
         </div>
 
         {/* Personal Details : Body */}
-        <div className='w-full flex justify-around items-center mt-4 font-mono text-lg'>
+        <div className='personal-details w-full flex justify-around items-center mt-4 font-mono text-lg'>
           {/* Left */}
-          <div className='space-y-10 '>
+          <div className='left'>
             {/* Id */}
-            <div className='flex'>
+            <div className='pd-item flex'>
               <p className='font-semibold'>Id : </p>
               <p className='ml-2 opacity-80'>{librarian.libId}</p>
             </div>
             {/* Name */}
-            <div className='flex'>
+            <div className='pd-item flex'>
               <p className='font-semibold' >Name: </p>
               <p className='ml-2 opacity-80'>{librarian.name}</p>
             </div>
             {/* Email */}
-            <div className='flex'>
+            <div className='pd-item flex'>
               <p className='font-semibold' >Email:</p>
               <p className='ml-2 opacity-80'>{librarian.email}</p>
             </div>
           </div>
 
           {/* Right */}
-          <div className='space-y-10'>
+          <div className='right'>
             {/* Gender */}
-            <div className='flex'>
+            <div className='pd-item flex'>
               <p className='font-semibold' >Gender: </p>
               <p className='ml-2 opacity-80'>{librarian.gender}</p>
             </div>
             {/* Mobile No. */}
-            <div className='flex'>
+            <div className='pd-item flex'>
               <p className='font-semibold' >Mob No: </p>
               <p className='ml-2 opacity-80'>{librarian.contact}</p>
             </div>
             {/* Date */}
-            <div className='flex'>
+            <div className='pd-item flex'>
               <p className='font-semibold' >Date:</p>
               <p className='ml-2 opacity-80'>{librarian.date}</p>
             </div>
